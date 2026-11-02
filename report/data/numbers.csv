@@ -73,16 +73,16 @@ Jharkhand,6022,13.4,17.6,4.9
 Chhattisgarh,5992,14.4,16.5,4.9
 Bihar,4947,14.3,24.7,3.8
 ","classified UPI value (P2P+P2M) Jul–Sep 2026 ÷ 2026 population ÷ 3; growth vs Jul–Sep 2025 (unclassified share 38.9% → 39.0%, stable)",NPCI state table via archive; MoHFW 2026 population projection
-cities_JulSep2026,"city,districts,pop_mn,v_pr_month,state_v_pr_month,city_vs_state
-Bengaluru,Bengaluru (Urban),10.86,88322,25227,3.5
-Chennai,Chennai,4.99,62964,19143,3.29
-Mumbai,Mumbai + Mumbai Suburban,14.32,60655,21283,2.85
-Hyderabad,Hyderabad,4.33,57091,38018,1.5
-Pune,Pune,10.85,47717,21283,2.24
-Delhi,Central + East + Nazul + New Delhi + North + North East + North West + Shahdara + South + South East + South West + West,22.54,32267,32267,1.0
-Ahmedabad,Ahmadabad,8.84,24859,12211,2.04
-Kolkata,Kolkata,4.95,22304,7055,3.16
-",core city district(s) classified UPI value Jul–Sep 2026 ÷ 2026 est population (state projection × 2011 district share) ÷ 3,NPCI district table via archive; Census 2011; MoHFW projection
+cities_JulSep2026,"city,districts,pop_mn,v_pr_month,state_v_pr_month,city_vs_state,pop_2011_mn,growth_vs_state,pop_fixed_share_mn,v_pr_month_fixed_share
+Bengaluru,Bengaluru (Urban),13.37,71750,25227,2.84,9.62,3.02,10.86,88322
+Mumbai,Mumbai + Mumbai Suburban,12.9,67339,21283,3.16,12.44,0.24,14.32,60655
+Hyderabad,Hyderabad,4.04,61221,38018,1.61,3.94,0.23,4.33,57091
+Chennai,Chennai,7.25,43357,19143,2.26,6.75,1.0,4.99,62964
+Pune,Pune,12.13,42691,21283,2.01,9.43,1.9,10.85,47717
+Delhi,Central + East + Nazul + New Delhi + North + North East + North West + Shahdara + South + South East + South West + West,22.54,32267,32267,1.0,16.79,1.0,22.54,32267
+Kolkata,Kolkata,4.44,24867,7055,3.52,4.5,-0.12,4.95,22304
+Ahmedabad,Ahmadabad,8.89,24714,12211,2.02,7.05,1.16,8.84,24859
+","core city district(s) classified UPI value Jul–Sep 2026 ÷ 2026 est population ÷ 3; population = Census 2011 on today's boundary × (1 + r × state growth 2011–26), r = district ÷ state growth 2001–11 (r = 1 for enlarged Chennai); fixed-share columns use 2011 district share of the state for comparison",NPCI district table via archive; Census 2001 and 2011 (Table A-2); MoHFW projection
 india_geo,"₹12,733 per resident per month classified UPI, Jul–Sep 2026; +19.0% value, +20.0% count vs Jul–Sep 2025",sum classified states,NPCI state table
 category_5411,"{""name"": ""Groceries and supermarkets"", ""val_26_cr"": 953628.0, ""yoy_v"": 31.6, ""yoy_c"": 35.4, ""base"": ""Y22"", ""years"": 4.0, ""val_cagr"": 50.1, ""cnt_cagr"": 82.2, ""tot_cagr_same"": 44.9, ""tkt_base"": 476.3, ""tkt_25"": 225.8, ""tkt_26"": 219.6, ""share_base"": 8.2, ""share_26"": 9.4, ""yoy_v_prev"": 42.2, ""yoy_c_prev"": 55.0}",Oct25–Sep26 vs Oct24–Sep25 on months published in both; CAGR from earliest Oct–Sep year with ≥9 published months; ticket = value ÷ count,NPCI MCC table
 category_5812,"{""name"": ""Eating places and restaurants"", ""val_26_cr"": 253889.9, ""yoy_v"": 23.1, ""yoy_c"": 17.9, ""base"": ""Y22"", ""years"": 4.0, ""val_cagr"": 63.5, ""cnt_cagr"": 71.1, ""tot_cagr_same"": 44.9, ""tkt_base"": 203.5, ""tkt_25"": 162.5, ""tkt_26"": 169.6, ""share_base"": 1.5, ""share_26"": 2.5, ""yoy_v_prev"": 35.4, ""yoy_c_prev"": 38.0}",Oct25–Sep26 vs Oct24–Sep25 on months published in both; CAGR from earliest Oct–Sep year with ≥9 published months; ticket = value ÷ count,NPCI MCC table
@@ -116,7 +116,7 @@ category_others,"{""name"": ""Other merchant categories (NPCI's remainder)"", ""
 debt_collection_break,"{""aug25_v"": 77007.1, ""sep25_v"": 48457.2, ""aug25_c"": 151.5, ""sep25_c"": 133.5, ""sep26_v"": 76244.5, ""sep26_c"": 222.0, ""lfl_v"": 57.3, ""lfl_c"": 66.3, ""left_tkt"": 15878.7, ""cc_nov25_v"": 86990.5, ""cc_nov25_c"": 58.1, ""cc_tkt"": 14959.7, ""tkt_aug25"": 5083.3, ""tkt_sep25"": 3629.5, ""others_aug25"": 309216.7, ""others_sep25"": 336576.0, ""prebreak_yoy"": 24.2, ""adj_v"": 25.5, ""adj_c"": 55.2, ""factor_v"": 0.629}",monthly values; left ticket = (Aug25 value − Sep25 value) ÷ (Aug25 count − Sep25 count),"NPCI MCC table (7322, 5413)"
 food_share,"{""Y22"": 19.9, ""Y23"": 33.4, ""Y24"": 34.6, ""Y25"": 33.7, ""Y26"": 32.7}","(restaurants + fast food) ÷ (restaurants + fast food + groceries), Oct–Sep years",NPCI MCC table
 liquor_share,"{""Y24"": {""shop_share"": 43.2, ""n"": 11}, ""Y25"": {""shop_share"": 59.0, ""n"": 12}, ""Y26"": {""shop_share"": 69.1, ""n"": 12}}","liquor shops ÷ (liquor shops + bars), matched months",NPCI MCC table
-geo_context,"{""all_upi_pr_month"": 20859, ""gdp_per_person_fy26"": 242630, ""blr_pop_trend_mn"": 15.6, ""blr_v_pr_month_trend"": 61478}","all UPI incl. unclassified, Jul–Sep 2026 ÷ 2026 population ÷ 3; GDP FY26 current prices ÷ 2026 population; Bengaluru 2026 share = 2011 share × (2011 share ÷ 2001 share)^1.5, × Karnataka 2026 projection",NPCI state and district tables; MoSPI NAS (31 Aug 2026); MoHFW projections; Census 2001 and 2011
+geo_context,"{""all_upi_pr_month"": 20859, ""gdp_per_person_fy26"": 242630}","all UPI incl. unclassified, Jul–Sep 2026 ÷ 2026 population ÷ 3; GDP FY26 current prices ÷ 2026 population",NPCI state table; MoSPI NAS (31 Aug 2026); MoHFW projections
 cc_on_upi,"{""fy24"": 0.7, ""apr_oct_2024"": 1.6}","RuPay credit card UPI value ÷ merchant UPI value, FY24 (Apr 2023–Mar 2024) and Apr–Oct 2024 (first seven months of FY25)",Ministry of Finance reply to Rajya Sabha Q889 (NPCI data); NPCI merchant category table
 metro_share_2001_2011,"{""Bengaluru"": [12.37, 15.75], ""Kolkata"": [5.7, 4.93], ""Mumbai"": [12.36, 11.07]}","district population ÷ state population × 100, Census 2001 and 2011 (Mumbai = Mumbai + Mumbai Suburban)","Census of India 2011, Table A-2 (data/macro/census_district_growth.csv)"
 credit_split,"{""total_lakh_cr"": 11.19, ""rows"": [{""line"": ""Vehicle"", ""bank_cr"": 108990, ""nbfc_cr"": 85239, ""lakh_cr"": 1.94, ""share"": 17.4}, {""line"": ""Consumer durables"", ""bank_cr"": 1007, ""nbfc_cr"": 28054, ""lakh_cr"": 0.29, ""share"": 2.6}, {""line"": ""Education"", ""bank_cr"": 18901, ""nbfc_cr"": 0, ""lakh_cr"": 0.19, ""share"": 1.7}, {""line"": ""Credit cards"", ""bank_cr"": 20334, ""nbfc_cr"": 0, ""lakh_cr"": 0.2, ""share"": 1.8}, {""line"": ""Gold loans"", ""bank_cr"": 261037, ""nbfc_cr"": 149122, ""lakh_cr"": 4.1, ""share"": 36.7}, {""line"": ""Personal and other"", ""bank_cr"": 323731, ""nbfc_cr"": 122488, ""lakh_cr"": 4.46, ""share"": 39.9}]}","increase in outstanding: banks 19 Sep 2025 → 30 Sep 2026, NBFCs 31 Aug 2025 → 31 Aug 2026; housing excluded; personal and other = bank personal loans minus housing, vehicle, durables, education, cards and gold + NBFC retail loans minus housing, vehicle, gold and durables","RBI SIBC 30 Oct 2026 and NBFC sectoral credit 6 Oct 2026 (data/rbi/consumer_credit_levels.csv, data/rbi/raw/)"
