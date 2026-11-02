@@ -75,6 +75,7 @@ Every figure is computed at full precision and rounded once, for display. The sc
 - **Cause and effect.** Tax changes, rate moves and festival timing overlap, with no untouched comparison group. The verdicts are associations backed by several sources, not causal estimates.
 - **Prices.** UPI figures are nominal. In a Jan–Aug 2026 test using approximate category CPI proxies, none of the 26 tested series changed sign.
 - **Debt collection.** In September 2025 the value of MCC 7322 fell 37% in a month while payments fell 12%, and the average payment dropped from ₹5,083 to ₹3,630. NPCI announced no reclassification; the report treats it as a likely break and shows both reported and break-adjusted growth. Confirming it needs an NPCI mapping notice.
+- **Revisit after the festive season.** This edition runs to September 2026. Diwali fell on 20 October in 2025 but falls on 8 November in 2026, and Navratri and the big online sales moved from late September to October, so October on its own will mislead. We will revisit clothing, electronics, online marketplaces and department stores once October–November 2026 data are out (expected December 2026), comparing September–November with the same months a year earlier.
 - **Geography.** UPI is attributed by payer address; about 39% of value has no state. District populations use 2011 census shares, so city levels are approximate.
 
 ## Checks
