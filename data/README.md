@@ -23,7 +23,7 @@ npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were ta
 | `macro/currency_annual_fy_end.csv` | RBI Handbook of Statistics on the Indian Economy, Table 36 (release of 31 Jul 2026) |
 | `macro/size_ratios_fy.csv` | FY totals and ratios: GDP and PFCE (MoSPI), UPI and P2M (NPCI), ATM and card payments (RBI PSI), currency with the public (RBI) |
 | `macro/state_population_projection.csv` | Report of the Technical Group on Population Projections 2011–2036, National Commission on Population, MoHFW (July 2020) |
-| `macro/census_district_growth.csv` | Census of India 2001 and 2011 populations (Table A-2) for Bengaluru Urban, Kolkata, Mumbai, Mumbai Suburban and their states, used for the city population sensitivity |
+| `macro/census_district_growth.csv` | Census of India 2001 and 2011 populations (Table A-2) for the metro core districts and their states, with the 2011 population on today's boundary where a district changed (Chennai enlarged in 2018; Ahmedabad lost two talukas to Botad in 2013). Used to estimate 2026 city populations |
 
 ## Credit, cash, tax, vehicles, fuel
 
