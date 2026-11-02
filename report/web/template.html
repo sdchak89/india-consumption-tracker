@@ -58,6 +58,7 @@ section{margin-top:64px;display:flex;flex-direction:column;gap:20px}
 .chart.mid{height:240px}
 .chart.sm{height:180px}
 .cap{font-size:13px;color:var(--ink-3);max-width:95ch}
+.csrc{font-size:12px;color:var(--ink-3);margin:6px 0 0;overflow-wrap:anywhere}.csrc a{color:inherit}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
@@ -200,7 +201,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
 <section id="coverage">
   <div class="kicker">0 · Scope</div>
   <h2>What part of UPI does this study cover?</h2>
-  <p class="answer">You are not missing anything: by value, merchant payments are only 30% of UPI. But they are 63% of all UPI payments, and they are where consumption shows up. Named consumer categories cover 11% of all UPI value, and NPCI puts another 45% of merchant value into an unnamed "Others" bucket.</p>
+  <p class="answer">By value, merchant payments are only 30% of UPI. But they are 63% of all UPI payments, and they are where consumption shows up. Named consumer categories cover 11% of all UPI value, and NPCI puts another 45% of merchant value into an unnamed "Others" bucket.</p>
   <div class="card">
     <h3>UPI in the last 12 months (Oct 2025–Sep 2026)</h3>
     <div class="funnel" id="funnel"></div>
@@ -221,12 +222,14 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <h3>Merchant UPI per year, ₹ lakh crore</h3>
       <div class="chart"><canvas id="cDirY" aria-label="Bar chart of merchant UPI value per year with growth labels"></canvas></div>
       <p class="cap">Oct–Sep years, so the latest year ends with the latest NPCI month. Labels: value and growth on the year before. Number of payments and average payment in the data table.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="dirY"><summary>Data</summary></details>
     </div>
     <div class="card">
       <h3>Merchant UPI per month, ₹ lakh crore</h3>
       <div class="chart"><canvas id="cDirM" aria-label="Bar chart of monthly merchant UPI value"></canvas></div>
       <p class="cap">September 2026: ₹8.87 lakh crore across 15.2 billion payments (+23.3% and +23.1% on September 2025).</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="dirM"><summary>Data</summary></details>
     </div>
   </div>
@@ -242,6 +245,8 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i style="background:var(--s1)"></i>Essentials</span><span><i style="background:var(--s2)"></i>Discretionary</span></div>
       <div class="chart"><canvas id="cBasketY" aria-label="Bar chart of essentials and discretionary UPI per year"></canvas></div>
       <p class="cap">Same 13 categories every month (the consumption categories NPCI published continuously in all 48 months from Oct 2022). Essentials: groceries, dairy, meat, bakeries, pharmacies, fuel, telecom, utilities, department stores. Discretionary: restaurants, fast food, electronics, bars.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="basketY"><summary>Data</summary></details>
     </div>
     <div class="card">
@@ -249,6 +254,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i class="ln" style="background:var(--s1)"></i>Essentials</span><span><i class="ln" style="background:var(--s2)"></i>Discretionary</span></div>
       <div class="chart"><canvas id="cBasketG" aria-label="Line chart of essentials and discretionary growth"></canvas></div>
       <p class="cap">Value growth on the same month a year earlier, Oct 2023–Sep 2026. September 2026: essentials ₹2.10 lakh crore (+22.0%), discretionary ₹0.53 lakh crore (+17.7%).</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="basketM"><summary>Data</summary></details>
     </div>
   </div>
@@ -264,18 +270,20 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <h3>Merchant UPI growth split into consumption growth and share gain</h3>
       <div class="legend"><span><i style="background:var(--s1)"></i>Part matching consumption growth</span><span><i style="background:var(--bench)"></i>Part from UPI growing relative to consumption</span></div>
       <div class="chart"><canvas id="cDecomp" aria-label="Stacked bar chart decomposing merchant UPI growth"></canvas></div>
-      <p class="cap">FY = April–March. (1 + UPI growth) = (1 + consumption growth) × (1 + share gain). <strong>Why logs:</strong> growth compounds, so only log terms add up to 100%. FY26: ln(1.085) ÷ ln(1.265) = 35%; dividing 8.5% by 26.5% (32%) would leave 1.4 points of compounding unassigned. Consumption = MoSPI private final consumption (PFCE) at current prices. Merchant UPI also contains about ₹15 lakh crore a year of investment and repayment flows, so "share gain" is not all cash switching.</p>
+      <p class="cap">FY = April–March. Bars are split in proportion to the logs of the two growth factors; formula and notes in Method (section 12).</p>
+      <p class="csrc">Source: NPCI P2P/P2M table; MoSPI national accounts, 31 Aug 2026 release (PFCE, current prices). Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/size_ratios_fy.csv">data/macro/size_ratios_fy.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/gdp_pfce_annual.csv">data/macro/gdp_pfce_annual.csv</a></p>
       <details class="data" data-key="dec"><summary>Data</summary></details>
     </div>
     <div class="card">
       <h3>What changed in FY26, ₹ lakh crore</h3>
       <div class="chart"><canvas id="cBridge" aria-label="Bar chart of FY26 changes in payments and consumption"></canvas></div>
       <p class="cap">Change from FY25 to FY26. ATM withdrawals and card payments: RBI payment statistics (annual sums). Currency with the public: RBI, level at 31 March (a stock, not a flow).</p>
+      <p class="csrc">Source: NPCI; MoSPI national accounts; RBI payment system indicators (ATM, cards); RBI Handbook Table 36 (currency with the public). Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/size_ratios_fy.csv">data/macro/size_ratios_fy.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/atm_cash_withdrawals_monthly.csv">data/macro/atm_cash_withdrawals_monthly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/card_spend_monthly.csv">data/macro/card_spend_monthly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/currency_annual_fy_end.csv">data/macro/currency_annual_fy_end.csv</a></p>
       <details class="data" data-key="bridge"><summary>Data</summary></details>
     </div>
   </div>
   <div class="prose">
-    <p><strong>Your point holds, with one distinction.</strong> Cash <em>held</em> is not shrinking: currency with the public rose from ₹36.3 to ₹40.7 lakh crore in FY26 (+12.0%), faster than consumption. Cash <em>withdrawn</em> is: ATM withdrawals fell from ₹30.6 to ₹28.7 lakh crore. <span class="infer">Our inference</span> People may be keeping cash as a store of value while spending less of it; the data show the two trends, not the transfer. UPI's extra ₹19.1 lakh crore sits alongside consumption growth of ₹15.4 lakh crore across all channels. The two cover different payments, so the gap between them is not a measure of switching.</p>
+    <p><strong>Cash held and cash withdrawn are moving apart.</strong> Cash <em>held</em> is not shrinking: currency with the public rose from ₹36.3 to ₹40.7 lakh crore in FY26 (+12.0%), faster than consumption. Cash <em>withdrawn</em> is: ATM withdrawals fell from ₹30.6 to ₹28.7 lakh crore. <span class="infer">Our inference</span> People may be keeping cash as a store of value while spending less of it; the data show the two trends, not the transfer. UPI's extra ₹19.1 lakh crore sits alongside consumption growth of ₹15.4 lakh crore across all channels. The two cover different payments, so the gap between them is not a measure of switching.</p>
     <p><strong>Where this goes.</strong> The share-gain part fell from 50% (FY24) to 29% to 17% (FY26), down by about 42% each year. <span class="infer">Scenario</span> If nominal consumption keeps growing 8.5% a year and the share-gain part halves from here, merchant UPI growth would be about 17.5% next year and 13% the year after, tracking consumption more closely.</p>
     <p><strong>Consistent with maturing adoption: the average merchant payment has stopped shrinking.</strong> It fell from ₹813 (Oct 2021–Sep 2022) to ₹664, ₹643 and ₹595 (Oct 2024–Sep 2025), then edged up to ₹601 (Oct 2025–Sep 2026). Year on year it has been flat or slightly up every month since January 2026, after falling 6–10% year on year in Jan–Aug 2025 and narrowing to about 1.5–4.1% in Sep–Dec. The fixed 13-category basket shows the same: ₹272.50 → ₹272.66. The sub-1% rise is nominal and mix-sensitive; it does not establish larger real purchases.</p>
   </div>
@@ -290,7 +298,8 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
     <div class="legend"><span><i style="background:var(--s1)"></i>Digital (midpoint)</span><span><i style="background:var(--s2)"></i>Cash (midpoint)</span></div>
     <div class="chart"><canvas id="cCash" aria-label="Stacked bar chart of consumer spending paid digitally vs in cash"></canvas></div>
     <p class="cap">Total bar = private consumption (PFCE) in the quarter. Labels = cash share, midpoint of the range. Range: low estimate counts card and wallet payments outside shops as consumption, high estimate does not. We also remove merchant UPI paid to brokers, lenders, credit-card bills and digital gold, which are not consumption. On the RBI article's method without that removal, cash is 31–40% (Apr–Jun 2026) and 65–73% (Apr–Jun 2022). These are model estimates of cash use, not observed cash payments.</p>
-    <details class="data" data-key="cash"><summary>Data</summary></details>
+    <p class="csrc">Source: RBI payment system indicators; NPCI merchant UPI; MoSPI quarterly PFCE; method of Bhuyan, RBI Bulletin (Oct 2024). Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/rbi/cash_share_quarterly.csv">data/rbi/cash_share_quarterly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/rbi/cash_residual_components.csv">data/rbi/cash_residual_components.csv</a></p>
+      <details class="data" data-key="cash"><summary>Data</summary></details>
   </div>
   <div class="grid2">
     <div class="card">
@@ -298,12 +307,14 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i style="background:var(--s1)"></i>Merchant UPI</span><span><i style="background:var(--s2)"></i>ATM cash withdrawals</span><span><i style="background:var(--bench)"></i>Card payments</span><span><i style="background:var(--s3)"></i>Cash held by public (31 Mar)</span></div>
       <div class="chart"><canvas id="cPay" aria-label="Grouped bar chart of payment channels"></canvas></div>
       <p class="cap">FY = April–March. Cards include all debit and credit card payments (in shops and online). Cash held is a stock at year-end; the others are flows during the year.</p>
+      <p class="csrc">Source: RBI payment system indicators; RBI Handbook Table 36; NPCI; MoSPI. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/atm_cash_withdrawals_monthly.csv">data/macro/atm_cash_withdrawals_monthly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/card_spend_monthly.csv">data/macro/card_spend_monthly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/currency_annual_fy_end.csv">data/macro/currency_annual_fy_end.csv</a></p>
       <details class="data" data-key="pay"><summary>Data</summary></details>
     </div>
     <div class="card">
       <h3>Where the extra ₹21.2 lakh crore of merchant UPI went</h3>
       <div class="chart"><canvas id="cFam" aria-label="Bar chart of increase in merchant UPI by spending group"></canvas></div>
       <p class="cap">Oct 2025–Sep 2026 vs the year before. Blue = household consumption; orange = investment and repayment flows; grey = not broken out. Labels: rupee increase (growth). A category counts by name only if it has at least 10 matched calendar months (published in both years); digital gold (9 months) and family clothing (4) therefore sit in the grey bar.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="fam"><summary>Data</summary></details>
     </div>
   </div>
@@ -313,19 +324,21 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
 <section id="economy">
   <div class="kicker">4 · UPI and merchants</div>
   <h2>How big is UPI next to GDP, and what does it mean for merchants?</h2>
-  <p class="answer">All UPI moved ₹314 lakh crore in FY26, 0.91 times GDP (0.53 times in FY23). Merchant UPI reached ₹90.9 lakh crore, equal to 46% of consumer spending (21% in FY23). For merchants, free acceptance ends for large payments at large shops.</p>
+  <p class="answer">All UPI moved ₹314 lakh crore in FY26, 0.91 times GDP (0.53 times in FY23). Merchant UPI reached ₹90.9 lakh crore, equal in size to 46% of consumer spending (₹196.2 lakh crore of PFCE in FY26; 21% in FY23). For merchants, free acceptance ends for large payments at large shops.</p>
   <div class="grid2">
     <div class="card">
       <h3>UPI as a multiple of the economy</h3>
       <div class="legend"><span><i style="background:var(--s1)"></i>All UPI ÷ GDP</span><span><i style="background:var(--s2)"></i>Merchant UPI ÷ consumption</span></div>
       <div class="chart"><canvas id="cSize" aria-label="Bar chart of UPI as multiple of GDP and consumption"></canvas></div>
       <p class="cap">Gross payment flows against value added (MoSPI base 2022-23, 31 Aug 2026 vintage). A ratio near 1 does not mean UPI is as big as the economy: the same rupee can move several times.</p>
+      <p class="csrc">Source: NPCI; MoSPI national accounts. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/size_ratios_fy.csv">data/macro/size_ratios_fy.csv</a></p>
       <details class="data" data-key="size"><summary>Data</summary></details>
     </div>
     <div class="card">
       <h3>Average payment by category, Oct 2025–Sep 2026</h3>
       <div class="chart tall"><canvas id="cTicket" aria-label="Bar chart of average UPI payment by category"></canvas></div>
       <p class="cap">₹ per payment (log scale). Dashed line: ₹2,000, above which the new merchant fee applies at large merchants. An average below ₹2,000 still includes many payments above it.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="ticket"><summary>Data</summary></details>
     </div>
   </div>
@@ -360,11 +373,13 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <thead><tr><th>Category</th><th class="n">Last 12 months<br>₹ lakh cr</th><th class="n">Value<br>growth</th><th class="n">Payments<br>growth</th><th class="n">Average payment<br>then → now</th><th>CAGR (bar) vs all merchant UPI (tick)</th></tr></thead>
       <tbody></tbody>
     </table>
+    <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/report/data/numbers.csv">report/data/numbers.csv</a></p>
     <p class="cap">Average payment "then" is the CAGR base year (months matched to the latest year); "now" is all published months of the last 12. Growth for brokers uses 10 matched months. † Debt collection: a block of large payments appears to have left this code in September 2025 (value −37% in one month, payments −12%), a possible classification break that NPCI has not announced. Reported growth is −18.6%; a sensitivity calculation adjusting for the break gives +25.5% in value and +55% in payments. See the card below.</p>
     <details class="data" data-key="score"><summary>Data</summary></details>
   </div>
   <p class="prose">Each card shows monthly value in ₹ crore. Gaps are months NPCI did not publish the category.</p>
   <div class="cats" id="cats"></div>
+  <p class="csrc">Source for all category panels: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
 </section>
 
 <section id="substitution">
@@ -377,6 +392,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i style="background:var(--s1)"></i>Groceries</span><span><i style="background:var(--s2)"></i>Restaurants + fast food</span></div>
       <div class="chart"><canvas id="cFoodY" aria-label="Bar chart of food at home and eating out"></canvas></div>
       <p class="cap">Label above each pair: eating out's share of the two. The 2022→2023 jump likely reflects restaurants adopting UPI; habits are not measured.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="foodY"><summary>Data</summary></details>
     </div>
     <div class="card">
@@ -384,6 +400,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i class="ln" style="background:var(--s1)"></i>Food at home (groceries, dairy, meat, bakeries)</span><span><i class="ln" style="background:var(--s2)"></i>Eating out</span><span><i class="dash"></i>All merchant UPI</span></div>
       <div class="chart"><canvas id="cFood" aria-label="Line chart of food at home vs eating out growth"></canvas></div>
       <p class="cap">Value growth on the same month a year earlier.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="food"><summary>Data</summary></details>
     </div>
   </div>
@@ -397,6 +414,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
         <tr><td>Online marketplaces vs clothing shops</td><td>Marketplace payments +61% with the average down from ₹709 to ₹579; clothing-shop payments +34% with the average down from ₹1,269 to ₹1,138. Both are getting smaller and more frequent.</td><td><span class="pill na">○ Both growing</span><br><span class="cap">Cheaper, more frequent buying</span></td></tr>
       </tbody>
     </table>
+    <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
   </div>
 </section>
 
@@ -410,6 +428,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i style="background:var(--s1)"></i>Essentials</span><span><i style="background:var(--s2)"></i>Discretionary</span></div>
       <div class="chart"><canvas id="cITax" aria-label="Bar chart of consumer UPI by financial year"></canvas></div>
       <p class="cap">Same 13-category basket, ₹ lakh crore, FY = April–March. FY26 is the first year under the relief (zero tax up to ₹12 lakh). Loan repayments and broker payments are excluded.</p>
+      <p class="csrc">Source: NPCI UPI merchant category table. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/merchant_categories_monthly.csv">data/npci/merchant_categories_monthly.csv</a></p>
       <details class="data" data-key="itax"><summary>Data</summary></details>
     </div>
     <div class="card">
@@ -417,12 +436,13 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <div class="legend"><span><i style="background:var(--bench)"></i>Year before relief (FY25 vs FY24)</span><span><i style="background:var(--s1)"></i>Year after (FY26 vs FY25)</span></div>
       <div class="chart"><canvas id="cTerc" aria-label="Bar chart of change in UPI share by taxpayer density group"></canvas></div>
       <p class="cap">21 states with 5 million+ people, ranked by positive-tax income-tax filers per 1,000 people (FY24; includes non-individual filers) and split into three groups of 7. Bars: change in the group's share of state-attributed UPI value (log points, population-weighted).</p>
+      <p class="csrc">Source: NPCI state table; Ministry of Finance reply to Lok Sabha Q946 (positive-tax filers); MoHFW population projections. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/state_monthly.csv.gz">data/npci/state_monthly.csv.gz</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/tax/state_income_tax.csv">data/tax/state_income_tax.csv</a></p>
       <details class="data" data-key="terc"><summary>Data</summary></details>
     </div>
   </div>
   <div class="prose">
     <p><strong>What we see.</strong> Consumer UPI growth slowed from 44.3% (FY25) to 29.6% (FY26) as adoption matured, and discretionary slowed more (45.5% → 26.2%) than essentials (43.9% → 30.6%). Of the six largest consumer categories, only restaurants accelerated (26.2% → 31.4%). Across states, the most-taxed group went from losing UPI share (−8.2) to holding it (+0.4), while the least-taxed group went from gaining (+6.9) to losing (−2.6). Nationally, real consumption growth rose from 6.4% (FY25) to 7.2% (FY26).</p>
-    <p><strong>Should credit be isolated? Yes, but only in part.</strong> Credit cards on UPI were only about 0.7% of merchant UPI in FY24 and 1.6% in Apr–Oct 2024, so most UPI spending is paid from bank balances (newer credit lines on UPI are not published, so this can't be fully confirmed). We also remove loan repayments and broker payments. What cannot be isolated: a personal loan, once in the bank account, can be spent by UPI; the purchases tax relief would fund most (phones, appliances, two-wheelers) are increasingly bought on EMI; and down-payments and EMIs can be paid by UPI. Credit data add financing context, but UPI cannot identify the funding source, and no financing share has been isolated (section 8).</p>
+    <p><strong>Should credit be isolated? Yes, but only in part.</strong> RuPay credit cards, the only ones that can be linked to UPI, were about 0.7% of merchant UPI in FY24 (April 2023–March 2024) and 1.6% in April–October 2024, the first seven months of FY25 and the latest published, so most UPI spending is paid from bank balances (newer credit lines on UPI are not published, so this can't be fully confirmed). We also remove loan repayments and broker payments. What cannot be isolated: a personal loan, once in the bank account, can be spent by UPI; the purchases tax relief would fund most (phones, appliances, two-wheelers) are increasingly bought on EMI; and down-payments and EMIs can be paid by UPI. Credit data add financing context, but UPI cannot identify the funding source, and no financing share has been isolated (section 8).</p>
     <p><strong>Verdict:</strong> <span class="pill mixed">◐ Consistent with a tax effect, not proof</span> The state pattern fits the relief, but neither test isolates it: Maharashtra alone drives most of the top group's earlier fall, and the share of UPI that NPCI cannot place in a state jumped from 26% to 42% in Apr–Jun 2025, which can move state shares on its own.</p>
   </div>
   <div class="card">
@@ -430,7 +450,8 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
     <div class="legend"><span><i style="background:var(--bench)"></i>Oct 2023–Sep 2024</span><span><i style="background:var(--s2)"></i>Oct 2024–Sep 2025</span><span><i style="background:var(--s1)"></i>Oct 2025–Sep 2026</span></div>
     <div class="chart mid"><canvas id="cVeh" aria-label="Bar chart of car and two-wheeler registrations"></canvas></div>
     <p class="cap">Vahan registrations. Cars = motor cars; two-wheelers = motorcycles, scooters and mopeds. Small cars and two-wheelers up to 350cc went from 28% GST to 18%; larger ones to 40%. Repo cuts in 2025 also helped, so the two effects can't be separated.</p>
-    <details class="data" data-key="veh"><summary>Data</summary></details>
+    <p class="csrc">Source: Vahan4 public dashboard. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/vahan/vahan_state_monthly.csv.gz">data/vahan/vahan_state_monthly.csv.gz</a></p>
+      <details class="data" data-key="veh"><summary>Data</summary></details>
   </div>
   <p class="read"><strong>A clear rebound, no clear payback yet.</strong> Car registrations rose from 4.05 to 4.96 million (+22.5%) and two-wheelers from 19.8 to 24.0 million (+21.1%), after growth of 6.1% and 4.8% the year before. FADA retail sales jumped 40.5% in October 2025. Navratri 2026 registrations were 6.5% lower, but over 10 days against 11; per day they were 2.8% higher. Maruti's domestic passenger-vehicle dispatches rose 20.5% in October 2026. Bank vehicle loans accelerated from 6.1% to 15.5% growth.</p>
 </section>
@@ -445,7 +466,8 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
     <div class="legend"><span><i style="background:var(--bench)"></i>Year to Sep 2025 (Aug for NBFCs)</span><span><i style="background:var(--s1)"></i>Year to Sep 2026 (Aug for NBFCs)</span></div>
     <div class="chart tall"><canvas id="cCredit" aria-label="Bar chart of consumer credit growth by loan type"></canvas></div>
     <p class="cap">RBI sectoral credit (30 Oct 2026 release for banks; 6 Oct 2026 for NBFCs, upper and middle layer), outstanding balances, housing excluded. Bank growth compares 30 Sep 2026 with 19 Sep 2025 (a 376-day gap after RBI moved to month-end reporting), which flatters it slightly. Bank sector data cover banks with about 95% of non-food credit; NBFC data cover the upper and middle layers (about 87% of NBFC credit). All-bank credit growth compares 30 Sep 2026 with 3 Oct 2025. Since May 2024 one bank has moved some farm loans into gold loans. * Indicative: NBFC August figures added to bank September figures.</p>
-    <details class="data" data-key="credit"><summary>Data</summary></details>
+    <p class="csrc">Source: RBI sectoral deployment of bank credit (30 Oct 2026); RBI NBFC sectoral credit (6 Oct 2026). Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/rbi/credit_growth_prepost.csv">data/rbi/credit_growth_prepost.csv</a></p>
+      <details class="data" data-key="credit"><summary>Data</summary></details>
   </div>
   <div class="card tbl">
     <h3>Credit next to spending</h3>
@@ -460,6 +482,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
         <tr><td>Loans against deposits</td><td>Banks 14.3% → 53.3%</td><td>n/a</td><td>FD-backed borrowing rose; motives unmeasured.</td></tr>
       </tbody>
     </table>
+    <p class="csrc">Source: RBI sectoral credit; Vahan; NPCI; company results (links under Sources). Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/rbi/credit_growth_prepost.csv">data/rbi/credit_growth_prepost.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/vahan/vahan_state_monthly.csv.gz">data/vahan/vahan_state_monthly.csv.gz</a></p>
   </div>
 </section>
 
@@ -510,28 +533,30 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
 <section id="geography">
   <div class="kicker">10 · Geography</div>
   <h2>Where is UPI activity concentrated, and how fast is each state growing?</h2>
-  <p class="answer">The south and west lead on UPI per person; Bihar, Chhattisgarh and Jharkhand trail. Kerala, Tamil Nadu and Jammu and Kashmir grew fastest; West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%. Most metro cores are 2–3.5 times their state average (Hyderabad 1.5×, because Telangana's average is already the highest). Kolkata is 3.2× West Bengal's average, in line with other metros; its level is the lowest of the eight, and West Bengal's state average is also among the lowest.</p>
+  <p class="answer">The south and west lead on UPI money moved per person; Bihar, Chhattisgarh and Jharkhand trail. These are gross payment flows, not income or spending: UPI counts money each time it moves, including transfers between people and between a person's own accounts, so all UPI per person (about ₹20,900 a month, ₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh in FY26). Kerala, Tamil Nadu and Jammu and Kashmir grew fastest; West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%. Most metro cores are 2–3.5 times their state average (Hyderabad 1.5×, because Telangana's average is already the highest). Kolkata is 3.2× West Bengal's average, in line with other metros; its level is the lowest of the eight, and West Bengal's state average is also among the lowest.</p>
   <details open>
     <summary>How the geography numbers are calculated (all states and cities)</summary>
     <div class="prose">
       <p><strong>Source and attribution.</strong> NPCI's state and district tables, which assign each UPI payment (person-to-person and merchant) to the state or district of the payer's registered address. About 39% of UPI value has no state; we use only the classified part, so all figures here understate true activity (all-India, including unclassified, would be about ₹20,900 per person per month). The address rule is as described by the data archive; we could not confirm it on npci.org.in.</p>
       <p><strong>Period.</strong> July–September 2026, compared with July–September 2025. The national unclassified share was the same in both (38.9% and 39.0%), but that does not guarantee each state's missing share was stable, so treat state growth rates with care. District data only start in March 2026, so city growth rates are not yet available.</p>
-      <p><strong>Per resident.</strong> Classified UPI value in the quarter ÷ 2026 population ÷ 3. State population: MoHFW 2026 projection. District population: state projection × the district's 2011 Census share. City levels are therefore approximate; neither the direction of the population error nor local unclassified shares is established.</p>
+      <p><strong>Per resident.</strong> Classified UPI value in the quarter ÷ 2026 population ÷ 3. State population: MoHFW 2026 projection. District population: state projection × the district's 2011 Census share. City levels are approximate, and the population error runs both ways. Bengaluru Urban grew 47% in 2001–11 against 16% for Karnataka, so its 2011 share understates its 2026 population: if its share kept rising at that pace, its population would be about 15.6 million and its figure about ₹61,500 a month rather than ₹88,300. Districts whose share fell in 2001–11, such as Kolkata and Mumbai, are understated instead. Local unclassified shares are not known.</p>
       <p><strong>City = core district(s).</strong> Mumbai = Mumbai + Mumbai Suburban; Bengaluru = Bengaluru Urban; Hyderabad, Chennai, Pune, Kolkata, Ahmedabad = their own district; Delhi = all of Delhi.</p>
     </div>
   </details>
   <div class="card">
-    <h3>Metro core: UPI value per resident per month, Jul–Sep 2026</h3>
+    <h3>Metro core: UPI money moved per resident per month, Jul–Sep 2026</h3>
     <div class="chart"><canvas id="cCity" aria-label="Bar chart of UPI per resident in metro cores"></canvas></div>
-    <p class="cap">Label: ₹ per resident per month, and multiple of the state average. Dashed line: all-India average, ₹12,733.</p>
-    <details class="data" data-key="city"><summary>Data</summary></details>
+    <p class="cap">Label: ₹ per resident per month, and multiple of the state average. Dashed line: all-India average, ₹12,733. Gross flows, including transfers between people; not income or spending. Bengaluru on a 2001–11 population trend: about ₹61,500.</p>
+    <p class="csrc">Source: NPCI district table; MoHFW population projections; Census 2001 and 2011. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/district_monthly.csv.gz">data/npci/district_monthly.csv.gz</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/district_snapshot.csv">data/npci/district_snapshot.csv</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/census_district_growth.csv">data/macro/census_district_growth.csv</a></p>
+      <details class="data" data-key="city"><summary>Data</summary></details>
   </div>
   <div class="card tbl">
-    <h3>States: UPI value per resident now, and growth</h3>
+    <h3>States: UPI money moved per resident, and growth</h3>
     <table id="tStates">
-      <thead><tr><th>State</th><th>₹ per resident per month (Jul–Sep 2026)</th><th>Value growth vs Jul–Sep 2025</th><th class="n">Payment growth</th><th class="n">Payments per resident per month</th></tr></thead>
+      <thead><tr><th>State</th><th>UPI moved per resident per month, ₹ (Jul–Sep 2026)</th><th>Value growth vs Jul–Sep 2025</th><th class="n">Payment growth</th><th class="n">Payments per resident per month</th></tr></thead>
       <tbody></tbody>
     </table>
+    <p class="csrc">Source: NPCI state table; MoHFW population projections. Data: <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/npci/state_monthly.csv.gz">data/npci/state_monthly.csv.gz</a>, <a href="https://github.com/sdchak89/india-consumption-tracker/blob/main/data/macro/state_population_projection.csv">data/macro/state_population_projection.csv</a></p>
     <p class="cap">22 states with 5 million+ people. Includes person-to-person transfers. India (classified): ₹12,733 per resident per month, value +19.0%, payments +20.0%.</p>
     <details class="data" data-key="states"><summary>Data</summary></details>
   </div>
@@ -560,7 +585,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <b>CAGR</b><span><code>(value last year ÷ value base year)^(1 ÷ years) − 1</code>, matched months.</span>
       <b>Share of merchant UPI</b><span><code>category value ÷ all merchant value</code>, same months.</span>
       <b>Contribution</b><span><code>value this year − value last year</code>; residual = total increase − named categories.</span>
-      <b>Consumption part of UPI growth</b><span><code>ln(1 + PFCE growth) ÷ ln(1 + merchant UPI growth)</code>. Logs, because growth compounds: (1 + UPI growth) = (1 + consumption growth) × (1 + share gain), and only logs split that product exactly. FY26: 0.082 ÷ 0.235 = 35%; FY24: 19% (a simple ratio would give 15%).</span>
+      <b>Consumption part of UPI growth</b><span><code>ln(1 + PFCE growth) ÷ ln(1 + merchant UPI growth)</code>. Logs, because growth compounds: (1 + UPI growth) = (1 + consumption growth) × (1 + share gain), and only logs split that product exactly. FY26: ln(1.085) ÷ ln(1.265) = 0.082 ÷ 0.235 = 35%; dividing 8.5% by 26.5% (32%) would leave 1.4 points of compounding unassigned. FY24: 19% (a simple ratio would give 15%). Consumption = MoSPI private final consumption (PFCE) at current prices. Merchant UPI also contains about ₹15 lakh crore a year of investment and repayment flows, so the share-gain part is not all cash switching.</span>
       <b>Cash share</b><span><code>1 − digital consumer payments ÷ PFCE</code>; digital = UPI merchant + Aadhaar Pay + FASTag + card and wallet payments at shops (+ card and wallet "other" payments for the high digital estimate), minus UPI to brokers, lenders, card bills and digital gold.</span>
       <b>Break-adjusted growth (sensitivity)</b><span><code>last 12 months ÷ (pre-break months × (Sep 2025 ÷ Aug 2025) + post-break months of the earlier year) − 1</code></span>
       <b>Per resident</b><span><code>classified UPI value ÷ population ÷ months</code></span>
