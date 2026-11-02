@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Where is Indian consumption going?"
+type: report
+authors:
+  - family-names: Chakraborty
+    given-names: Soumyadeep
+date-released: 2026-11-02
+version: "1.0"
+license: CC-BY-4.0
+url: "https://sdchak89.github.io/india-consumption-tracker/"
+repository-code: "https://github.com/sdchak89/india-consumption-tracker"
+keywords: [India, consumption, UPI, NPCI, payments, credit]
