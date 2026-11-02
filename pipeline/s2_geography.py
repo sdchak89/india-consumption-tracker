@@ -1,8 +1,9 @@
 """Step 2. States, cities and metro clusters from NPCI's state and district UPI tables.
 
 Basis: Jul–Sep 2026 vs Jul–Sep 2025, all UPI (P2P + P2M) by payer address.
-Per-resident figures use 2026 population projections (MoHFW) for states and World Population Review's 2026
-estimates for cities, with a Census-trend estimate for the core districts kept for comparison; clusters use fixed 2011 shares. Writes build/states.csv, cities.csv, clusters.csv."""
+Per-resident figures use 2026 population projections (MoHFW); metro core districts are projected from Census 2011
+(today's boundaries) at their 2001-11 pace relative to their state; World Population Review's city figures are a
+cross-check; wider clusters use fixed 2011 shares. Writes build/states.csv, cities.csv, clusters.csv."""
 import pandas as pd
 from common import DATA, BUILD, write_json
 
@@ -111,9 +112,16 @@ def core_pop(census_names, st):
     return base * (1 + r * (pop(st) / P11[NAME.get(st, st)] - 1)), r, base
 
 
-# City populations used in the report: World Population Review's 2026 estimates (boundaries undefined;
-# mostly metro areas). The Census-trend estimate for the core district(s) is kept alongside for comparison.
+# Cross-check: World Population Review's 2026 city populations (boundaries undefined; mostly metro areas wider
+# than the districts). Shown against core-district UPI and against the UPI of all the metro's districts.
 WPR = pd.read_csv(DATA / "macro" / "city_population_wpr_2026.csv").set_index("city")["population_2026"]
+METRO = {"Mumbai": "Mumbai", "Hyderabad": "Hyderabad", "Chennai": "Chennai", "Kolkata": "Kolkata"}  # multi-district metros
+
+
+def metro_value(cluster):
+    g = sn[sn.metro_cluster == cluster]
+    names = [n.strip() for x in g.npci_districts for n in x.split("|")]
+    return d[(d.district.isin(names)) & (d.period.isin(Q26))].value.sum()
 
 out = []
 for city, (st, npci_names, census_names) in CORE.items():
@@ -124,13 +132,14 @@ for city, (st, npci_names, census_names) in CORE.items():
     else:
         v, c, dn = dsum(st, npci_names, Q26)
         pct, r, base = core_pop(census_names, st)
-    p = WPR[city]
+    p, w = pct, WPR[city]
+    mv = metro_value(METRO[city]) if city in METRO else v
     stp, sv = pop(st), agg(st, Q26, "value")
     out.append(dict(city=city, districts=" + ".join(dn), pop_mn=round(p / 1e6, 2), v_pr_month=round(v / p / 3),
                     c_pr_month=round(c / p / 3, 1), tkt=round(v / c), state=st, state_v_pr_month=round(sv / stp / 3),
                     city_vs_state=round(v / p / (sv / stp), 2), city_share_of_state_val=round(v / sv * 100, 1),
-                    pop_census_trend_mn=round(pct / 1e6, 2), v_pr_month_census_trend=round(v / pct / 3),
-                    city_vs_state_census_trend=round(v / pct / (sv / stp), 2)))
+                    pop_wpr_mn=round(w / 1e6, 2), v_pr_month_wpr=round(v / w / 3),
+                    v_pr_month_metro_wpr=round(mv / w / 3), core_share_of_metro_val=round(v / mv * 100, 1)))
 pd.DataFrame(out).sort_values("v_pr_month", ascending=False).to_csv(BUILD / "cities.csv", index=False)
 
 # ---- wider metro clusters ---------------------------------------------------
