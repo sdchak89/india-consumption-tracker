@@ -86,6 +86,7 @@ dec=[]
 for fy0,fy1 in [('2022-23','2023-24'),('2023-24','2024-25'),('2024-25','2025-26')]:
     gu=S.loc[fy1,'p2m_cr']/S.loc[fy0,'p2m_cr']; gp=ga.loc[fy1,'PFCE_current']/ga.loc[fy0,'PFCE_current']; gr=ga.loc[fy1,'PFCE_constant_2022-23']/ga.loc[fy0,'PFCE_constant_2022-23']
     dec.append(dict(fy='FY'+fy1[-2:],upi=round((gu-1)*100,1),pfce_nom=round((gp-1)*100,1),pfce_real=round((gr-1)*100,1),share_gain=round((gu/gp-1)*100,1),cons_part=round(np.log(gp)/np.log(gu)*100),
+        cons_pts=round(float((gu-1)*100*np.log(gp)/np.log(gu)),4),share_pts=round(float((gu-1)*100*(1-np.log(gp)/np.log(gu))),4),
         d_upi=round((S.loc[fy1,'p2m_cr']-S.loc[fy0,'p2m_cr'])/1e5,1),d_pfce=round((ga.loc[fy1,'PFCE_current']-ga.loc[fy0,'PFCE_current'])/1e5,1)))
 atm=pd.read_csv(DATA/'macro'/'atm_cash_withdrawals_monthly.csv'); atm=atm[(atm.series=='ATM_cash_withdrawal_total')&(atm.metric=='value')].copy()
 def fy(p): y,m=map(int,p.split('-')); y0=y if m>=4 else y-1; return f"{y0}-{str(y0+1)[2:]}"

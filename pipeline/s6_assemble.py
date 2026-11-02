@@ -100,6 +100,50 @@ REG.append(dict(id="cc_on_upi", value=json.dumps(O["cc_on_upi"]),
                 calculation="RuPay credit card UPI value ÷ merchant UPI value, FY24 (Apr 2023–Mar 2024) and Apr–Oct 2024 (first seven months of FY25)",
                 source="Ministry of Finance reply to Rajya Sabha Q889 (NPCI data); NPCI merchant category table"))
 
+# ---- 2001–11 population-share change of the other metro cores (direction of the 2011-share bias) ----
+sh = lambda a, s, y: cen.loc[a, y] / cen.loc[s, y] * 100
+O["metro_share_2001_2011"] = {
+    "Bengaluru": [round(sh("Bangalore (Bengaluru Urban district)", "Karnataka", y), 2) for y in ["census_2001", "census_2011"]],
+    "Kolkata": [round(sh("Kolkata", "West Bengal", y), 2) for y in ["census_2001", "census_2011"]],
+    "Mumbai": [round((cen.loc["Mumbai", y] + cen.loc["Mumbai Suburban", y]) / cen.loc["Maharashtra", y] * 100, 2)
+               for y in ["census_2001", "census_2011"]],
+}
+REG.append(dict(id="metro_share_2001_2011", value=json.dumps(O["metro_share_2001_2011"]),
+                calculation="district population ÷ state population × 100, Census 2001 and 2011 (Mumbai = Mumbai + Mumbai Suburban)",
+                source="Census of India 2011, Table A-2 (data/macro/census_district_growth.csv)"))
+
+# ---- where the year's increase in non-housing consumer credit went (banks Sep→Sep, NBFCs Aug→Aug) ----
+lv = pd.read_csv(DATA / "rbi" / "consumer_credit_levels.csv")
+lv = lv.pivot_table(index=["lender", "line"], columns="date", values="outstanding_inr_crore", aggfunc="first")
+d_bank = lv.loc["bank", "2026-09-30"] - lv.loc["bank", "2025-09-19"]
+d_nbfc = lv.loc["nbfc", "2026-08-31"] - lv.loc["nbfc", "2025-08-31"]
+bank_other = d_bank["personal_total"] - d_bank[["housing", "vehicle", "consumer_durables", "education", "credit_cards", "gold"]].sum()
+nbfc_other = d_nbfc["retail_total"] - d_nbfc[["housing", "vehicle", "gold", "consumer_durables"]].sum()
+parts = [("Vehicle", d_bank["vehicle"], d_nbfc["vehicle"]),
+         ("Consumer durables", d_bank["consumer_durables"], d_nbfc["consumer_durables"]),
+         ("Education", d_bank["education"], 0.0),
+         ("Credit cards", d_bank["credit_cards"], 0.0),
+         ("Gold loans", d_bank["gold"], d_nbfc["gold"]),
+         ("Personal and other", bank_other, nbfc_other)]
+tot_inc = sum(b + n for _, b, n in parts)
+O["credit_split"] = dict(
+    total_lakh_cr=round(tot_inc / 1e5, 2),
+    rows=[dict(line=k, bank_cr=round(float(b)), nbfc_cr=round(float(n)), lakh_cr=round((b + n) / 1e5, 2),
+               share=round((b + n) / tot_inc * 100, 1)) for k, b, n in parts])
+REG.append(dict(id="credit_split", value=json.dumps(O["credit_split"], ensure_ascii=False),
+                calculation="increase in outstanding: banks 19 Sep 2025 → 30 Sep 2026, NBFCs 31 Aug 2025 → 31 Aug 2026; housing excluded; "
+                            "personal and other = bank personal loans minus housing, vehicle, durables, education, cards and gold "
+                            "+ NBFC retail loans minus housing, vehicle, gold and durables",
+                source="RBI SIBC 30 Oct 2026 and NBFC sectoral credit 6 Oct 2026 (data/rbi/consumer_credit_levels.csv, data/rbi/raw/)"))
+
+# ---- figures from outside NPCI and the official datasets (company results, surveys, markets) ----
+ext = pd.read_csv(DATA / "external" / "external_figures.csv", dtype=str).fillna("")
+O["external"] = ext[["id", "measure", "earlier_period", "earlier_value", "latest_period", "latest_value", "unit", "publisher"]].to_dict("records")
+for r in ext.itertuples():
+    late = f"{r.latest_value} ({r.latest_period})"
+    REG.append(dict(id="ext_" + r.id, value=f"{r.earlier_value} ({r.earlier_period}) → {late}" if r.earlier_value else late,
+                    calculation=r.measure + (f"; {r.note}" if r.note else ""), source=f"{r.publisher}: {r.source_url}"))
+
 for k in ["raw", "cardser", "score", "foodY"]:  # published key order
     O[k] = O.pop(k)
 write_json(O, "report.json")
