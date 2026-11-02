@@ -210,8 +210,8 @@ add('1 · Direction','Since May 2025, discretionary categories have grown slower
      "<b>Same 13 categories every month:</b> the consumption categories NPCI published continuously over these 48 months, so list changes cannot create spikes.",
      "<b>Essentials:</b> groceries, dairy, meat, bakeries, pharmacies, fuel, telecom, utilities, department stores. <b>Discretionary:</b> restaurants, fast food, electronics, bars.",
      "September 2026: essentials ₹2.10 lakh crore (+22.0%), discretionary ₹0.53 lakh crore (+17.7%).")+
- ex('Essentials vs discretionary per year','₹ lakh crore and growth, fixed 13-category basket','xBasketY',lg([('Essentials','var(--s1)',''),('Discretionary','var(--s2)','')]))+
- ex('Monthly growth, same basket','Value growth on the same month a year earlier, Oct 2023–Sep 2026','xBasketG',lg([('Essentials','var(--s1)','l'),('Discretionary','var(--s2)','l')])),
+ ex('Essentials vs discretionary per year','₹ lakh crore, fixed 13-category basket; labels = Oct–Sep total and growth on the year before','xBasketY',lg([('Essentials','var(--s1)',''),('Discretionary','var(--s2)','')]))+
+ ex('Monthly growth, same basket','Value growth on the same month a year earlier, Oct 2023–Sep 2026; end labels = September 2026 alone','xBasketG',lg([('Essentials','var(--s1)','l'),('Discretionary','var(--s2)','l')])),
  NPCI+'.','g-pee')
 
 add('2 · Consumption signal','About 35% of merchant-UPI growth now matches consumption growth, up from 19% two years ago; the rest is UPI growing relative to consumption',
@@ -345,12 +345,12 @@ for r in st:
 stbl=f'<table class="tb t-st"><thead><tr><th>State</th><th>₹ moved per resident a month</th><th class="n">Value growth</th><th class="n">Payment growth</th><th class="n">Payments a month</th></tr></thead><tbody>{srows}</tbody></table>'
 add('10 · Geography','The south and west lead on UPI money moved per person; most metro cores run 2–3.5 times their state average',
  pts("<b>Kerala, Tamil Nadu and Jammu and Kashmir grew fastest;</b> West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%.",
-     "<b>Kolkata is 3.2× West Bengal's average,</b> in line with other metros; its level is the lowest of the eight, and West Bengal's state average is also among the lowest. Hyderabad is 1.5×; Telangana's average is the highest.",
+     "<b>Kolkata is 3.5× West Bengal's average,</b> the highest multiple of the eight, yet its level is the lowest with Ahmedabad's: West Bengal's average is among the lowest. Hyderabad is 1.6×; Telangana's average is the highest.",
      "<b>Money moved, not income:</b> gross flows, including transfers between people. All UPI per person (₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh). About 39% of UPI value has no state.",
-     "<b>City populations</b> use fixed 2011 Census shares. If 2001–11 relative-population trends continued, these would overstate Bengaluru's UPI per resident (about ₹61,500, not ₹88,300) and understate Kolkata's and Mumbai's; the actual 2026 bias is unverified.")+
+     "<b>2026 city populations are estimates:</b> each district's 2011 Census count (today's boundary) grows at its 2001–11 pace relative to its state. Bengaluru: 13.4 million; on a fixed 2011 share it would be ₹88,300, not ₹71,800. Chennai (enlarged in 2018) is approximate.")+
  ex('Metro core: UPI money moved per resident per month','₹, Jul–Sep 2026; label = multiple of the state average','xCity')+
  exhtml('States: UPI money moved per resident, and growth','Jul–Sep 2026; growth vs Jul–Sep 2025',stbl),
- '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; Census 2011; analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
+ '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; Census 2001 and 2011; analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
 
 # limits, method, sources
 srcs=re.sub(r'\s+',' ',T[T.index('Sources outside NPCI'):T.index('</ul>',T.index('Sources outside NPCI'))])
