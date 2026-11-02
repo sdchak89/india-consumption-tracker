@@ -70,6 +70,7 @@ Definitions, formulas and limits are in [METHOD.md](METHOD.md). The main ones:
 - **Consumption part of UPI growth** = ln(1 + consumption growth) ÷ ln(1 + UPI growth), using MoSPI's private final consumption (PFCE). Logs, because the two sources of growth compound; only log terms add up to 100%. Worked example in [METHOD.md](METHOD.md#why-the-consumption-split-uses-logs).
 - **Cash share** = 1 − digital consumer payments ÷ PFCE, extending Bhuyan, RBI Bulletin (October 2024).
 - UPI figures are nominal rupees. ₹1 lakh crore = ₹1 trillion. FY = April–March.
+- Per-resident figures are money moved through UPI (including person-to-person transfers), not income or spending.
 - NPCI's "Others" line is 45% of merchant value and is not broken out. Category growth mixes new users and merchants with spending per person. Results are associations, not causal estimates.
 - **Next update:** clothing, electronics, online marketplaces and department stores will be revisited once October–November 2026 data are out (expected December 2026). Diwali moved from 20 October (2025) to 8 November (2026), so October alone misleads; the update compares September–November with the same months a year earlier.
 
