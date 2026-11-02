@@ -135,7 +135,7 @@ SRCX={
  'xVeh':'Vahan4 dashboard · data/vahan/vahan_state_monthly.csv.gz',
  'xCredSplit':'RBI sectoral credit (30 Oct 2026), NBFC sectoral credit (6 Oct 2026) · data/rbi/consumer_credit_levels.csv (from data/rbi/raw/); calculation: report/data/numbers.csv (credit_split)',
  'xCredit':'RBI sectoral credit (30 Oct 2026), NBFC sectoral credit (6 Oct 2026) · data/rbi/credit_growth_prepost.csv, consumer_credit_levels.csv',
- 'xCity':'NPCI district table; MoHFW; Census 2001 and 2011 · data/npci/district_monthly.csv.gz, district_snapshot.csv, state_monthly.csv.gz; data/macro/state_population_projection.csv, census_district_growth.csv',
+ 'xCity':'NPCI district table; World Population Review (2026); MoHFW · data/npci/district_monthly.csv.gz, district_snapshot.csv, state_monthly.csv.gz; data/macro/city_population_wpr_2026.csv, state_population_projection.csv',
 }
 SRCT={
  'Scoreboard: 28 selected categories':NPm+'; report/data/numbers.csv',
@@ -343,14 +343,14 @@ for r in st:
     col='var(--ink-3)' if r.get('india') else ('var(--s2)' if r['state']=='West Bengal' else 'var(--s1)')
     srows+=f'<tr><td{" style=\"font-weight:700\"" if r.get("india") else ""}>{r["state"]}</td><td><div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;height:8px;border-radius:2px;width:{r["v_pr_month"]/mv*90:.0f}px;background:{col}"></span>₹{r["v_pr_month"]:,}</div></td><td class="n">+{r["g_value"]:.1f}%</td><td class="n">+{r["g_count"]:.1f}%</td><td class="n">{r["c_pr_month"]}</td></tr>'
 stbl=f'<table class="tb t-st"><thead><tr><th>State</th><th>₹ moved per resident a month</th><th class="n">Value growth</th><th class="n">Payment growth</th><th class="n">Payments a month</th></tr></thead><tbody>{srows}</tbody></table>'
-add('10 · Geography','The south and west lead on UPI money moved per person; most metro cores run 2–3.5 times their state average',
+add('10 · Geography','The south and west lead on UPI money moved per person; on WPR populations, Pune and Bengaluru show the highest city figures',
  pts("<b>Kerala, Tamil Nadu and Jammu and Kashmir grew fastest;</b> West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%.",
-     "<b>Kolkata is 3.5× West Bengal's average,</b> the highest multiple of the eight, yet its level is the lowest with Ahmedabad's: West Bengal's average is among the lowest. Hyderabad is 1.6×; Telangana's average is the highest.",
+     "<b>Pune and Bengaluru show the highest city figures</b> (₹65,600 and ₹61,600). Pune's is overstated: its 7.9 million is below its district's 9.4 million even in 2011. City rankings are not boundary-matched.",
      "<b>Money moved, not income:</b> gross flows, including transfers between people. All UPI per person (₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh). About 39% of UPI value has no state.",
-     "<b>2026 city populations are estimates:</b> each district's 2011 Census count (today's boundary) grows at its 2001–11 pace relative to its state. Bengaluru: 13.4 million; on a fixed 2011 share it would be ₹88,300, not ₹71,800. Chennai (enlarged in 2018) is approximate.")+
- ex('Metro core: UPI money moved per resident per month','₹, Jul–Sep 2026; label = multiple of the state average','xCity')+
+     "<b>City populations</b> are World Population Review's 2026 estimates, mostly metro areas wider than the districts NPCI reports, so Hyderabad (0.5×) and Kolkata (1.0×) look low. A Census-based district estimate is in the data.")+
+ ex('Metro core: UPI money moved per resident per month','₹, Jul–Sep 2026; population: World Population Review 2026; label = multiple of the state average','xCity')+
  exhtml('States: UPI money moved per resident, and growth','Jul–Sep 2026; growth vs Jul–Sep 2025',stbl),
- '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; Census 2001 and 2011; analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
+ '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; World Population Review (city populations, 2026); analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
 
 # limits, method, sources
 srcs=re.sub(r'\s+',' ',T[T.index('Sources outside NPCI'):T.index('</ul>',T.index('Sources outside NPCI'))])
