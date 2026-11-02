@@ -264,7 +264,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <h3>Merchant UPI growth split into consumption growth and share gain</h3>
       <div class="legend"><span><i style="background:var(--s1)"></i>Part matching consumption growth</span><span><i style="background:var(--bench)"></i>Part from UPI growing relative to consumption</span></div>
       <div class="chart"><canvas id="cDecomp" aria-label="Stacked bar chart decomposing merchant UPI growth"></canvas></div>
-      <p class="cap">FY = April–March. (1 + UPI growth) = (1 + consumption growth) × (1 + share gain); the bar is split in proportion to the logs. Consumption = MoSPI private final consumption (PFCE) at current prices. Merchant UPI also contains about ₹15 lakh crore a year of investment and repayment flows, so "share gain" is not all cash switching.</p>
+      <p class="cap">FY = April–March. (1 + UPI growth) = (1 + consumption growth) × (1 + share gain). <strong>Why logs:</strong> growth compounds, so only log terms add up to 100%. FY26: ln(1.085) ÷ ln(1.265) = 35%; dividing 8.5% by 26.5% (32%) would leave 1.4 points of compounding unassigned. Consumption = MoSPI private final consumption (PFCE) at current prices. Merchant UPI also contains about ₹15 lakh crore a year of investment and repayment flows, so "share gain" is not all cash switching.</p>
       <details class="data" data-key="dec"><summary>Data</summary></details>
     </div>
     <div class="card">
@@ -559,7 +559,7 @@ select{font:14px var(--body);padding:5px 8px;border-radius:6px;border:1px solid 
       <b>CAGR</b><span><code>(value last year ÷ value base year)^(1 ÷ years) − 1</code>, matched months.</span>
       <b>Share of merchant UPI</b><span><code>category value ÷ all merchant value</code>, same months.</span>
       <b>Contribution</b><span><code>value this year − value last year</code>; residual = total increase − named categories.</span>
-      <b>Consumption part of UPI growth</b><span><code>ln(1 + PFCE growth) ÷ ln(1 + merchant UPI growth)</code></span>
+      <b>Consumption part of UPI growth</b><span><code>ln(1 + PFCE growth) ÷ ln(1 + merchant UPI growth)</code>. Logs, because growth compounds: (1 + UPI growth) = (1 + consumption growth) × (1 + share gain), and only logs split that product exactly. FY26: 0.082 ÷ 0.235 = 35%; FY24: 19% (a simple ratio would give 15%).</span>
       <b>Cash share</b><span><code>1 − digital consumer payments ÷ PFCE</code>; digital = UPI merchant + Aadhaar Pay + FASTag + card and wallet payments at shops (+ card and wallet "other" payments for the high digital estimate), minus UPI to brokers, lenders, card bills and digital gold.</span>
       <b>Break-adjusted growth (sensitivity)</b><span><code>last 12 months ÷ (pre-break months × (Sep 2025 ÷ Aug 2025) + post-break months of the earlier year) − 1</code></span>
       <b>Per resident</b><span><code>classified UPI value ÷ population ÷ months</code></span>
