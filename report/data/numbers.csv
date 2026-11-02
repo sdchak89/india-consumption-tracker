@@ -73,16 +73,16 @@ Jharkhand,6022,13.4,17.6,4.9
 Chhattisgarh,5992,14.4,16.5,4.9
 Bihar,4947,14.3,24.7,3.8
 ","classified UPI value (P2P+P2M) Jul–Sep 2026 ÷ 2026 population ÷ 3; growth vs Jul–Sep 2025 (unclassified share 38.9% → 39.0%, stable)",NPCI state table via archive; MoHFW 2026 population projection
-cities_JulSep2026,"city,districts,pop_mn,v_pr_month,state_v_pr_month,city_vs_state,pop_census_trend_mn,v_pr_month_census_trend,city_vs_state_census_trend
-Pune,Pune,7.89,65633,21283,3.08,12.13,42691,2.01
-Bengaluru,Bengaluru (Urban),15.57,61622,25227,2.44,13.37,71750,2.84
-Mumbai,Mumbai + Mumbai Suburban,21.78,39867,21283,1.87,12.9,67339,3.16
-Delhi,Central + East + Nazul + New Delhi + North + North East + North West + Shahdara + South + South East + South West + West,23.39,31094,32267,0.96,22.54,32267,1.0
-Chennai,Chennai,13.11,23987,19143,1.25,7.17,43851,2.29
-Hyderabad,Hyderabad,11.87,20824,38018,0.55,4.04,61221,1.61
-Ahmedabad,Ahmadabad,10.59,20762,12211,1.7,8.89,24714,2.02
-Kolkata,Kolkata,15.44,7154,7055,1.01,4.44,24867,3.52
-","core city district(s) classified UPI value Jul–Sep 2026 ÷ city population ÷ 3; city population = World Population Review 2026 estimate (boundary undefined, mostly metro areas wider than the district); census-trend columns: Census 2011 population on today's district boundary × (1 + r × state growth 2011–26), r = district ÷ state growth 2001–11",NPCI district table via archive; World Population Review (2 Nov 2026); Census 2001 and 2011; MoHFW projection
+cities_JulSep2026,"city,districts,pop_mn,v_pr_month,state_v_pr_month,city_vs_state,pop_wpr_mn,v_pr_month_wpr,v_pr_month_metro_wpr,core_share_of_metro_val
+Bengaluru,Bengaluru (Urban),13.37,71750,25227,2.84,15.57,61622,61622,100.0
+Mumbai,Mumbai + Mumbai Suburban,12.9,67339,21283,3.16,21.78,39867,56926,70.0
+Hyderabad,Hyderabad,4.04,61221,38018,1.61,11.87,20824,77463,26.9
+Chennai,Chennai,7.17,43851,19143,2.29,13.11,23987,42507,56.4
+Pune,Pune,12.13,42691,21283,2.01,7.89,65633,65633,100.0
+Delhi,Central + East + Nazul + New Delhi + North + North East + North West + Shahdara + South + South East + South West + West,22.54,32267,32267,1.0,23.39,31094,31094,100.0
+Kolkata,Kolkata,4.44,24867,7055,3.52,15.44,7154,20913,34.2
+Ahmedabad,Ahmadabad,8.89,24714,12211,2.02,10.59,20762,20762,100.0
+","core city district(s) classified UPI value Jul–Sep 2026 ÷ 2026 est population ÷ 3; population = Census 2011 on today's district boundary × (1 + r × state growth 2011–26), r = district ÷ state growth 2001–11 (r = 1 for enlarged Chennai). Cross-check: World Population Review 2026 population (mostly metro areas) against core-district UPI and against UPI of all the metro's districts",NPCI district table via archive; Census 2001 and 2011 (Table A-2); MoHFW projection; World Population Review (2 Nov 2026)
 india_geo,"₹12,733 per resident per month classified UPI, Jul–Sep 2026; +19.0% value, +20.0% count vs Jul–Sep 2025",sum classified states,NPCI state table
 category_5411,"{""name"": ""Groceries and supermarkets"", ""val_26_cr"": 953628.0, ""yoy_v"": 31.6, ""yoy_c"": 35.4, ""base"": ""Y22"", ""years"": 4.0, ""val_cagr"": 50.1, ""cnt_cagr"": 82.2, ""tot_cagr_same"": 44.9, ""tkt_base"": 476.3, ""tkt_25"": 225.8, ""tkt_26"": 219.6, ""share_base"": 8.2, ""share_26"": 9.4, ""yoy_v_prev"": 42.2, ""yoy_c_prev"": 55.0}",Oct25–Sep26 vs Oct24–Sep25 on months published in both; CAGR from earliest Oct–Sep year with ≥9 published months; ticket = value ÷ count,NPCI MCC table
 category_5812,"{""name"": ""Eating places and restaurants"", ""val_26_cr"": 253889.9, ""yoy_v"": 23.1, ""yoy_c"": 17.9, ""base"": ""Y22"", ""years"": 4.0, ""val_cagr"": 63.5, ""cnt_cagr"": 71.1, ""tot_cagr_same"": 44.9, ""tkt_base"": 203.5, ""tkt_25"": 162.5, ""tkt_26"": 169.6, ""share_base"": 1.5, ""share_26"": 2.5, ""yoy_v_prev"": 35.4, ""yoy_c_prev"": 38.0}",Oct25–Sep26 vs Oct24–Sep25 on months published in both; CAGR from earliest Oct–Sep year with ≥9 published months; ticket = value ÷ count,NPCI MCC table
