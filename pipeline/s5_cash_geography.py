@@ -37,7 +37,7 @@ S=pd.read_csv(BUILD/'states.csv'); C=pd.read_csv(BUILD/'cities.csv'); Wc=pd.read
 O['states']=S[S.pop_mn>=5].to_dict('records'); O['cities']=C.to_dict('records'); O['clusters']=Wc.to_dict('records')
 O['india_geo']=geo
 reg('states_JulSep2026',S[S.pop_mn>=5][['state','v_pr_month','g_value','g_count','c_pr_month']].to_csv(index=False),'classified UPI value (P2P+P2M) Jul–Sep 2026 ÷ 2026 population ÷ 3; growth vs Jul–Sep 2025 (unclassified share 38.9% → 39.0%, stable)','NPCI state table via archive; MoHFW 2026 population projection')
-reg('cities_JulSep2026',C[['city','districts','pop_mn','v_pr_month','state_v_pr_month','city_vs_state']].to_csv(index=False),'core city district(s) classified UPI value Jul–Sep 2026 ÷ 2026 est population (state projection × 2011 district share) ÷ 3','NPCI district table via archive; Census 2011; MoHFW projection')
+reg('cities_JulSep2026',C[['city','districts','pop_mn','v_pr_month','state_v_pr_month','city_vs_state','pop_2011_mn','growth_vs_state','pop_fixed_share_mn','v_pr_month_fixed_share']].to_csv(index=False),'core city district(s) classified UPI value Jul–Sep 2026 ÷ 2026 est population ÷ 3; population = Census 2011 on today\'s boundary × (1 + r × state growth 2011–26), r = district ÷ state growth 2001–11 (r = 1 for enlarged Chennai); fixed-share columns use 2011 district share of the state for comparison','NPCI district table via archive; Census 2001 and 2011 (Table A-2); MoHFW projection')
 reg('india_geo','₹12,733 per resident per month classified UPI, Jul–Sep 2026; +19.0% value, +20.0% count vs Jul–Sep 2025','sum classified states','NPCI state table')
 # category numbers
 P=O['prof']

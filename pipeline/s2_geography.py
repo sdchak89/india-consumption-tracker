@@ -1,8 +1,8 @@
 """Step 2. States, cities and metro clusters from NPCI's state and district UPI tables.
 
 Basis: Jul–Sep 2026 vs Jul–Sep 2025, all UPI (P2P + P2M) by payer address.
-Per-resident figures use 2026 population projections (MoHFW) and, for districts,
-2011 census district shares scaled to 2026. Writes build/states.csv, cities.csv, clusters.csv."""
+Per-resident figures use 2026 population projections (MoHFW); metro core districts are projected from
+Census 2011 (today's boundaries) at their 2001-11 pace relative to their state; wider clusters use fixed 2011 shares. Writes build/states.csv, cities.csv, clusters.csv."""
 import pandas as pd
 from common import DATA, BUILD, write_json
 
@@ -88,19 +88,45 @@ CORE = {
     "Kolkata": ("West Bengal", ["Kolkata"], ["Kolkata"]),
     "Ahmedabad": ("Gujarat", ["Ahmadabad"], ["Ahmadabad"]),
 }
+# 2026 population of each core district. No count exists after Census 2011, so:
+#   pop 2026 = 2011 population on today's district boundary
+#              x (1 + r x state growth 2011->2026, MoHFW projection),
+#   r = the district's 2001-11 growth / its state's 2001-11 growth (Census Table A-2).
+# A district that grows twice as fast as its state keeps doing so; one that shrank keeps shrinking slowly.
+# Chennai was enlarged in 2018 and has no comparable 2001 figure, so it grows at its state's pace (r = 1).
+CEN = pd.read_csv(DATA / "macro" / "census_district_growth.csv").set_index("area")
+P11 = pd.read_csv(DATA / "macro" / "state_population_projection.csv")
+P11 = P11[P11.year == 2011].set_index("state")["population_persons"]
+CEN_AREA = {"Bangalore": "Bangalore (Bengaluru Urban district)"}
+
+
+def core_pop(census_names, st):
+    g01 = lambda a: CEN.loc[a, "census_2011"] / CEN.loc[a, "census_2001"] - 1
+    d01 = sum(CEN.loc[CEN_AREA.get(n, n), "census_2001"] for n in census_names)
+    d11 = sum(CEN.loc[CEN_AREA.get(n, n), "census_2011"] for n in census_names)
+    base = sum(CEN.loc[CEN_AREA.get(n, n), "census_2011_current_boundary"] if pd.notna(CEN.loc[CEN_AREA.get(n, n), "census_2011_current_boundary"])
+               else CEN.loc[CEN_AREA.get(n, n), "census_2011"] for n in census_names)
+    enlarged = base > d11
+    r = 1.0 if enlarged else (d11 / d01 - 1) / g01(st)
+    return base * (1 + r * (pop(st) / P11[NAME.get(st, st)] - 1)), r, base
+
+
 out = []
 for city, (st, npci_names, census_names) in CORE.items():
     if city == "Delhi":
         x = d[(d.state == "Delhi") & (d.period.isin(Q26))]
         v, c, dn = x.value.sum(), x.volume.sum(), sorted(x.district.unique())
-        p = pop("Delhi")
+        p = pfix = pop("Delhi"); r = 1.0; base = P11[NAME.get("Delhi", "Delhi")]  # whole state: the MoHFW projection itself
     else:
         v, c, dn = dsum(st, npci_names, Q26)
-        p = census_pop([code(n) for n in census_names])
+        p, r, base = core_pop(census_names, st)
+        pfix = census_pop([code(n) for n in census_names])  # fixed 2011 share of the state, old boundary
     stp, sv = pop(st), agg(st, Q26, "value")
     out.append(dict(city=city, districts=" + ".join(dn), pop_mn=round(p / 1e6, 2), v_pr_month=round(v / p / 3),
                     c_pr_month=round(c / p / 3, 1), tkt=round(v / c), state=st, state_v_pr_month=round(sv / stp / 3),
-                    city_vs_state=round(v / p / (sv / stp), 2), city_share_of_state_val=round(v / sv * 100, 1)))
+                    city_vs_state=round(v / p / (sv / stp), 2), city_share_of_state_val=round(v / sv * 100, 1),
+                    pop_2011_mn=round(base / 1e6, 2), growth_vs_state=round(r, 2),
+                    pop_fixed_share_mn=round(pfix / 1e6, 2), v_pr_month_fixed_share=round(v / pfix / 3)))
 pd.DataFrame(out).sort_values("v_pr_month", ascending=False).to_csv(BUILD / "cities.csv", index=False)
 
 # ---- wider metro clusters ---------------------------------------------------
