@@ -54,6 +54,7 @@ h2.act{font:700 26px/1.16 var(--serif);color:var(--navy);margin:14px 0 0;max-wid
 .pts p{margin:0}.pts b{color:var(--ink);font-weight:600}
 .big{font:700 34px/1 var(--serif);color:var(--s1);display:block;margin-bottom:3px}
 .ex{display:flex;flex-direction:column;min-height:0;min-width:0;border-top:2px solid var(--navy);padding-top:8px}
+.exs{flex:none;font-size:8.4px;line-height:1.3;color:var(--ink-3);margin-top:3px}
 .exn{font:600 10px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--s1)}
 .ext{font:600 13.5px/1.3 var(--body);color:var(--ink);margin-top:3px}
 .exu{font-size:11px;color:var(--ink-3);margin-top:1px}
@@ -111,7 +112,7 @@ table.tb{width:100%;border-collapse:collapse;font-size:11px;line-height:1.35}
 .cols3 code{font-size:10.5px;background:var(--tint);padding:0 3px;border-radius:3px;color:var(--ink)}
 .src li{margin-bottom:4px}
 .infer{font:600 9.5px var(--body);text-transform:uppercase;letter-spacing:.04em;color:var(--mixed);background:var(--mixed-bg);border-radius:3px;padding:1px 5px}
-.tb.t-score td{padding:1.4px 6px;font-size:9.8px;line-height:1.25}.tb.t-score th{padding:2px 6px}.tb.t-pairs td{font-size:11px;padding:5px 8px}.tb.t-crs td{font-size:12.6px;padding:10px 10px;line-height:1.45}.tb.t-crs th{font-size:10.5px;padding:5px 10px}.tb.t-hyp td{font-size:11.3px;padding:6.5px 8px;line-height:1.4}.tb.t-hyp .pill{white-space:normal}.tb.t-out td{font-size:12px;padding:6.5px 8px}.tb.t-st td{font-size:9.8px;padding:1.2px 6px;line-height:1.25}.tb.t-st td:first-child{white-space:nowrap}.tb.t-st th{padding:2px 6px}
+.tb.t-score td{padding:1.1px 6px;font-size:9.8px;line-height:1.25}.tb.t-score th{padding:2px 6px}.tb.t-pairs td{font-size:11px;padding:5px 8px}.tb.t-crs td{font-size:12.6px;padding:8.5px 10px;line-height:1.45}.tb.t-crs th{font-size:10.5px;padding:5px 10px}.tb.t-hyp td{font-size:11.3px;padding:6.5px 8px;line-height:1.4}.tb.t-hyp .pill{white-space:normal}.tb.t-out td{font-size:12px;padding:5.2px 8px}.tb.t-st td{font-size:9.8px;padding:1.2px 6px;line-height:1.25}.tb.t-st td:first-child{white-space:nowrap}.tb.t-st th{padding:2px 6px}
 '''
 
 def page(n,trk,title,body,src,sub=None,cls='',grid=''):
@@ -121,15 +122,39 @@ def page(n,trk,title,body,src,sub=None,cls='',grid=''):
 <div class="ft"><div>{src}</div><div class="pn">{n}</div></div></section>'''
 
 EXN=[0]
+NPm='NPCI merchant category table · data/npci/merchant_categories_monthly.csv'
+SRCX={
+ 'xScope':'NPCI P2P/P2M and merchant category tables · data/npci/p2p_p2m_monthly.csv, merchant_categories_monthly.csv',
+ 'xDirY':NPm,'xDirG':NPm,'xBasketY':NPm,'xBasketG':NPm,'xTktY':NPm,'xTktM':NPm,'xFam':NPm,'xTicket':NPm,'xFoodY':NPm,'xFood':NPm,'xITax':NPm,
+ 'xDec':'NPCI P2P/P2M table; MoSPI PFCE, current prices (31 Aug 2026) · data/macro/size_ratios_fy.csv, gdp_pfce_annual.csv',
+ 'xBridge':'NPCI; MoSPI; RBI payment system indicators; RBI Handbook Table 36 · data/macro/',
+ 'xCash':'RBI payment system indicators; NPCI; MoSPI quarterly PFCE · data/rbi/cash_share_quarterly.csv',
+ 'xPay':'RBI payment system indicators; RBI Handbook Table 36; NPCI · data/macro/',
+ 'xSize':'NPCI; MoSPI national accounts · data/macro/size_ratios_fy.csv',
+ 'xTerc':'NPCI state table; MoF Lok Sabha Q946; MoHFW · data/npci/state_monthly.csv.gz, data/tax/state_income_tax.csv',
+ 'xVeh':'Vahan4 dashboard · data/vahan/vahan_state_monthly.csv.gz',
+ 'xCredSplit':'RBI sectoral credit (30 Oct 2026), NBFC sectoral credit (6 Oct 2026) · data/rbi/credit_growth_prepost.csv',
+ 'xCredit':'RBI sectoral credit (30 Oct 2026), NBFC sectoral credit (6 Oct 2026) · data/rbi/credit_growth_prepost.csv',
+ 'xCity':'NPCI district table; MoHFW; Census 2001 and 2011 · data/npci/district_monthly.csv.gz, data/macro/census_district_growth.csv',
+}
+SRCT={
+ 'Scoreboard: 28 selected categories':NPm+'; report/data/numbers.csv',
+ 'Three pairs, three different stories':NPm,
+ 'Credit next to spending':'RBI sectoral credit; Vahan; NPCI; company results (page 20) · data/rbi/, data/vahan/',
+ 'Eight hypotheses, tested':'NPCI; MoSPI; RBI; Vahan; company results (page 20) · report/data/report.json',
+ 'The outside view: public markets and official surveys':'Company results; RBI surveys; MoSPI; Mint (links on page 20)',
+ 'States: UPI money moved per resident, and growth':'NPCI state table; MoHFW projections · data/npci/state_monthly.csv.gz',
+}
+def xs(t): return f'<div class="exs">Source: {t}</div>' if t else ''
 def ex(title,unit,cid,legend='',extra=''):
     EXN[0]+=1
-    return f'''<figure class="ex" style="margin:0"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div>{f'<div class="lg">{legend}</div>' if legend else ''}<div class="cv"><canvas id="{cid}"></canvas></div>{extra}</figure>'''
+    return f'''<figure class="ex" style="margin:0"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div>{f'<div class="lg">{legend}</div>' if legend else ''}<div class="cv"><canvas id="{cid}"></canvas></div>{extra}{xs(SRCX.get(cid))}</figure>'''
 def exhtml(title,unit,inner):
     EXN[0]+=1
-    return f'''<figure class="ex" style="margin:0"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div><div style="flex:1;min-height:0;margin-top:6px;overflow:hidden">{inner}</div></figure>'''
+    return f'''<figure class="ex" style="margin:0"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div><div style="flex:1;min-height:0;margin-top:6px;overflow:hidden">{inner}</div>{xs(SRCT.get(title))}</figure>'''
 def exhtml_wide(title,unit,inner):
     EXN[0]+=1
-    return f'''<figure class="ex" style="margin:0;grid-column:1/-1"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div><div style="margin-top:4px">{inner}</div></figure>'''
+    return f'''<figure class="ex" style="margin:0;grid-column:1/-1"><span class="exn">Exhibit {EXN[0]}</span><div class="ext">{title}</div><div class="exu">{unit}</div><div style="margin-top:4px">{inner}</div>{xs(SRCT.get(title))}</figure>'''
 def lg(items):
     return ''.join(f'<span><i class="{c}" style="background:{col}"></i>{t}</span>' for t,col,c in items)
 def pts(*ps,head='What the data show'):
@@ -195,7 +220,7 @@ add('2 · Consumption signal','About 35% of merchant-UPI growth now matches cons
      "<span class='tag'>Scenario</span>The share-gain part fell from 50% to 29% to 17%, down about 42% a year. If nominal consumption keeps growing 8.5% and the share-gain part halves from here, merchant UPI growth would be about 17.5% next year and 13% the year after.")+
  ex('Merchant UPI growth split into consumption growth and share gain','% growth; labels = share of UPI growth','xDec',lg([('Part matching consumption growth','var(--s1)',''),('Part from UPI growing relative to consumption','var(--bench)','')]))+
  ex('What changed in FY26','Change from FY25, ₹ lakh crore','xBridge'),
- '<b>Source:</b> NPCI; MoSPI national accounts (base 2022-23); RBI payment system indicators and Handbook Table 36; analysis. (1 + UPI growth) = (1 + consumption growth) × (1 + share gain). <b>Why logs:</b> growth compounds, so only log terms add up to 100%. FY26: ln(1.085) ÷ ln(1.265) = 35%; dividing 8.5% by 26.5% (32%) would leave 1.4 points of compounding unassigned. Merchant UPI includes about ₹15 lakh crore a year of investment and repayment flows, so "share gain" is not all cash switching.','g-pee')
+ '<b>Source:</b> NPCI; MoSPI national accounts (base 2022-23); RBI payment system indicators and Handbook Table 36; analysis. FY = April–March. Bars split in proportion to the logs of the two growth factors; formula and notes on page 20.','g-pee')
 
 add('2 · Consumption signal','The average merchant payment has stopped shrinking, consistent with maturing adoption',
  pts("<span class='big'>₹595 → ₹601</span>Average merchant payment, latest two Oct–Sep years, after ₹813, ₹664 and ₹643 in the three years before.",
@@ -266,7 +291,7 @@ for cd in CD:
     cells+=f'<div class="mc"><div class="h"><span style="color:var(--ink)">{cd["t"]}</span><span>{k[0][0]}</span></div><div class="k">{kl}</div><div class="cv"><canvas id="m{cd["m"]}"></canvas></div><div class="t"><b style="color:var(--ink)">{head}.</b></div></div>'
 P.append(f'''<section class="pg"><div class="trk"><span>5 · Category by category</span><span>Where is Indian consumption going? · Soumyadeep Chakraborty · November 2026</span></div>
 <h2 class="act">Twelve categories up close: fast food leads four-year growth among large categories; brokers and repayments follow markets and reclassifications</h2>
-<div class="body" style="grid-template-rows:1fr;gap:0;margin-top:12px"><div class="sm">{cells}</div></div>
+<div class="body" style="grid-template-rows:1fr auto;gap:0;margin-top:12px"><div class="sm">{cells}</div><div class="exs">Source for all panels: NPCI merchant category table · data/npci/merchant_categories_monthly.csv; fuel volumes: PPAC · data/ppac/petroleum_consumption_monthly.csv</div></div>
 <div class="ft"><div>{NPCI}; PPAC product-wise petroleum consumption, Oct 2025–Sep 2026 vs the preceding 12 months (fuel volumes). Monthly value, ₹ crore; gaps are months NPCI did not publish the category. Growth = last 12 months vs the year before; avg = average payment then → now.</div><div class="pn">{pn}</div></div></section>''');pn+=1
 
 pairs_html='<table class="tb t-pairs" style="margin-top:8px"><thead><tr><th>Pair</th><th>What the data show</th><th>Verdict</th></tr></thead><tbody>'+''.join(f'<tr><td style="width:170px">{r[0]}</td><td>{r[1]}</td><td style="width:330px">{r[2]}</td></tr>' for r in PAIRS)+'</tbody></table>'
@@ -317,21 +342,21 @@ srows=''
 for r in st:
     col='var(--ink-3)' if r.get('india') else ('var(--s2)' if r['state']=='West Bengal' else 'var(--s1)')
     srows+=f'<tr><td{" style=\"font-weight:700\"" if r.get("india") else ""}>{r["state"]}</td><td><div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;height:8px;border-radius:2px;width:{r["v_pr_month"]/mv*90:.0f}px;background:{col}"></span>₹{r["v_pr_month"]:,}</div></td><td class="n">+{r["g_value"]:.1f}%</td><td class="n">+{r["g_count"]:.1f}%</td><td class="n">{r["c_pr_month"]}</td></tr>'
-stbl=f'<table class="tb t-st"><thead><tr><th>State</th><th>₹ per resident a month</th><th class="n">Value growth</th><th class="n">Payment growth</th><th class="n">Payments a month</th></tr></thead><tbody>{srows}</tbody></table>'
-add('10 · Geography','The south and west lead on UPI per person; most metro cores run 2–3.5 times their state average',
+stbl=f'<table class="tb t-st"><thead><tr><th>State</th><th>₹ moved per resident a month</th><th class="n">Value growth</th><th class="n">Payment growth</th><th class="n">Payments a month</th></tr></thead><tbody>{srows}</tbody></table>'
+add('10 · Geography','The south and west lead on UPI money moved per person; most metro cores run 2–3.5 times their state average',
  pts("<b>Kerala, Tamil Nadu and Jammu and Kashmir grew fastest;</b> West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%.",
      "<b>Kolkata is 3.2× West Bengal's average,</b> in line with other metros; its level is the lowest of the eight, and West Bengal's state average is also among the lowest. Hyderabad is 1.5×; Telangana's average is the highest.",
-     "<b>Method:</b> classified UPI value in Jul–Sep 2026 ÷ 2026 population ÷ 3. Address attribution follows the data archive. About 39% of UPI value has no state, so all figures understate activity.",
-     "<b>City = core district(s).</b> Core-district populations use 2011 Census shares, so city levels are approximate; neither the direction of the population error nor local unclassified shares is established.")+
- ex('Metro core: UPI value per resident per month','₹, Jul–Sep 2026; label = multiple of the state average','xCity')+
- exhtml('States: UPI value per resident now, and growth','Jul–Sep 2026; growth vs Jul–Sep 2025',stbl),
+     "<b>Money moved, not income:</b> gross flows, including transfers between people. All UPI per person (₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh). About 39% of UPI value has no state.",
+     "<b>City populations</b> use 2011 Census shares, which understate fast-growing districts: on its 2001–11 growth trend, Bengaluru is about ₹61,500, not ₹88,300.")+
+ ex('Metro core: UPI money moved per resident per month','₹, Jul–Sep 2026; label = multiple of the state average','xCity')+
+ exhtml('States: UPI money moved per resident, and growth','Jul–Sep 2026; growth vs Jul–Sep 2025',stbl),
  '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; Census 2011; analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
 
 # limits, method, sources
 srcs=re.sub(r'\s+',' ',T[T.index('Sources outside NPCI'):T.index('</ul>',T.index('Sources outside NPCI'))])
 srcs=re.sub(r'<a ([^>]*)>(.*?)</a>',r'<a \1 style="color:var(--s1);text-decoration:none">\2</a>',srcs); lis=re.findall(r'<li>(.*?)</li>',srcs)
 lim='''<p><b>Spending per person.</b> UPI adds users and merchants every month, so UPI per resident mixes adoption with spending.</p><p><b>Category by place.</b> NPCI doesn't publish categories by state or district.</p><p><b>Most of the growth.</b> NPCI's "Others" is 45% of merchant value and took 57.8% of last year's increase; 65.9% falls outside this report's category attribution.</p><p><b>Cause and effect.</b> Tax changes, rate moves and festival timing overlap, with no untouched comparison group. The verdicts are associations backed by several sources, not causal estimates.</p><p><b>Prices.</b> UPI figures are nominal. In a Jan–Aug 2026 test using approximate category CPI proxies (inflation 0.4–10.9%), growth fell by 0.5–14.1 points and none of the 26 tested series changed sign.</p><p><b>Debt collection.</b> NPCI did not announce a reclassification; our reading rests on the size and timing of the September 2025 drop and the matching average payment of the credit-card bill category. Confirming it needs an NPCI mapping notice.</p><p><b>Revisit after the festive season.</b> This edition runs to September 2026. Diwali fell on 20 October in 2025 but falls on 8 November in 2026, and Navratri and the big online sales moved from late September to October, so October on its own will mislead. We will revisit clothing, electronics, online marketplaces and department stores once October–November 2026 data are out (expected December 2026), comparing September–November with the same months a year earlier.</p>'''
-meth='''<p><b>Growth</b> <code>value ÷ value a year earlier − 1</code>, on months published in both periods.</p><p><b>CAGR</b> <code>(last year ÷ base year)^(1 ÷ years) − 1</code>, matched months.</p><p><b>Consumption part of UPI growth</b> <code>ln(1 + PFCE growth) ÷ ln(1 + UPI growth)</code>. Logs, because growth compounds: UPI growth = consumption growth × share gain, and only logs split that product exactly (FY26: 0.082 ÷ 0.235 = 35%).</p><p><b>Cash share</b> <code>1 − digital consumer payments ÷ PFCE</code>; digital = UPI merchant + Aadhaar Pay + FASTag + card and wallet payments at shops, minus UPI to brokers, lenders, card bills and digital gold. Extends Bhuyan, RBI Bulletin (Oct 2024); reproduces its FY23–FY24 digital totals.</p><p><b>Break-adjusted growth</b> (sensitivity): pre-break months scaled by Sep ÷ Aug 2025.</p><p><b>Per resident</b> <code>classified UPI ÷ population ÷ months</code>; <b>state share change</b> <code>100 × ln(share ÷ share last FY)</code>.</p><p><b>Checks.</b> All 1,157 plotted values and every number in the text were checked against the raw files, primary sources or earlier checks. Values changed after review, and all 218 scoreboard fields, were then recomputed from raw data.</p>'''
+meth='''<p><b>Growth</b> <code>value ÷ value a year earlier − 1</code>, on months published in both periods.</p><p><b>CAGR</b> <code>(last year ÷ base year)^(1 ÷ years) − 1</code>, matched months.</p><p><b>Consumption part of UPI growth</b> <code>ln(1 + PFCE growth) ÷ ln(1 + UPI growth)</code>. Logs, because (1 + UPI growth) = (1 + consumption growth) × (1 + share gain) compounds; only logs split it exactly. FY26: 0.082 ÷ 0.235 = 35% (8.5 ÷ 26.5 = 32% leaves 1.4 points unassigned). Consumption = MoSPI PFCE, current prices; merchant UPI includes ~₹15 lakh crore a year of investment and repayment flows.</p><p><b>Cash share</b> <code>1 − digital consumer payments ÷ PFCE</code>; digital = UPI merchant + Aadhaar Pay + FASTag + card and wallet payments at shops, minus UPI to brokers, lenders, card bills and digital gold. Extends Bhuyan, RBI Bulletin (Oct 2024); reproduces its FY23–FY24 digital totals.</p><p><b>Break-adjusted growth</b> (sensitivity): pre-break months scaled by Sep ÷ Aug 2025.</p><p><b>Per resident</b> <code>classified UPI ÷ population ÷ months</code>; <b>state share change</b> <code>100 × ln(share ÷ share last FY)</code>.</p><p><b>Checks.</b> All plotted values and text numbers were checked against raw files or primary sources; changed values and all 218 scoreboard fields were recomputed from raw data.</p>'''
 P.append(f'''<section class="pg"><div class="trk"><span>11–12 · Limits, method and sources</span><span>Where is Indian consumption going? · Soumyadeep Chakraborty · November 2026</span></div>
 <h2 class="act">What this data can't tell us, and how every number was built</h2>
 <div class="body" style="grid-template-columns:1fr;margin-top:14px"><div class="cols3"><div class="pts" style="font-size:11.5px"><h4>Limits</h4>{lim}</div><div class="pts" style="font-size:11.5px"><h4>Method</h4>{meth}</div><div class="pts" style="font-size:10.8px"><h4>Sources</h4><p><b>NPCI</b> UPI ecosystem statistics via the measure.thisindianlife.today archive (npci.org.in was unreachable on 1 Nov 2026), spot-checked against NPCI's August 2025 table; P2M totals match NPCI's P2P/P2M table every month.</p><ul class="src" style="margin:0;padding-left:14px">{''.join(f'<li>{x}</li>' for x in lis)}</ul></div></div></div>
