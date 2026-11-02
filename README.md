@@ -67,7 +67,7 @@ tests/                rebuild check and headline numbers
 Definitions, formulas and limits are in [METHOD.md](METHOD.md). The main ones:
 
 - **Growth** compares months published in both periods, because NPCI lists only its top categories each month.
-- **Consumption part of UPI growth** = ln(1 + consumption growth) ÷ ln(1 + UPI growth), using MoSPI's private final consumption (PFCE).
+- **Consumption part of UPI growth** = ln(1 + consumption growth) ÷ ln(1 + UPI growth), using MoSPI's private final consumption (PFCE). Logs, because the two sources of growth compound; only log terms add up to 100%. Worked example in [METHOD.md](METHOD.md#why-the-consumption-split-uses-logs).
 - **Cash share** = 1 − digital consumer payments ÷ PFCE, extending Bhuyan, RBI Bulletin (October 2024).
 - UPI figures are nominal rupees. ₹1 lakh crore = ₹1 trillion. FY = April–March.
 - NPCI's "Others" line is 45% of merchant value and is not broken out. Category growth mixes new users and merchants with spending per person. Results are associations, not causal estimates.

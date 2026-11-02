@@ -23,6 +23,35 @@
 
 PFCE is MoSPI's private final consumption expenditure in current prices, 2022-23 base (release of 31 August 2026).
 
+## Why the consumption split uses logs
+
+Merchant UPI grows for two reasons: consumption grows, and UPI takes a bigger share of that consumption (from cash and cards). The two compound:
+
+```
+(1 + UPI growth) = (1 + consumption growth) × (1 + share gain)
+FY26:      1.265 = 1.085 × 1.166
+```
+
+Adding the parts doesn't work: 8.5% + 16.6% = 25.1%, not 26.5%. The missing 1.4 points is the overlap (share gains applied on a larger consumption base), and it belongs to neither cause. Dividing doesn't work either: 8.5 ÷ 26.5 = 32% ignores the compounding.
+
+Logs turn the product into a sum, so the parts add up to exactly 100% and the split doesn't depend on which cause is counted first:
+
+```
+ln(1.265) = ln(1.085) + ln(1.166)
+    0.235 ≈     0.082 +     0.154
+consumption part = 0.082 ÷ 0.235 = 35%    share-gain part = 65%
+```
+
+The faster UPI grows, the more a simple ratio understates consumption's part:
+
+| FY | Merchant UPI growth | Consumption growth (nominal) | Simple ratio | Log split | Overlap left by adding |
+|---|---|---|---|---|---|
+| FY24 | 64.5% | 9.9% | 15% | 19% | 4.9 points |
+| FY25 | 42.1% | 10.1% | 24% | 27% | 2.9 points |
+| FY26 | 26.5% | 8.5% | 32% | 35% | 1.4 points |
+
+This is an accounting split, not a causal estimate. Consumption is nominal, so its part includes price rises, and merchant UPI also carries investment and repayment flows (about ₹15 lakh crore a year), so the share-gain part is not all cash switching.
+
 ## Cash share
 
 Extends Bhuyan, "Cash Usage in India: An Indicator", RBI Bulletin, October 2024, and reproduces its FY23 and FY24 digital totals.
