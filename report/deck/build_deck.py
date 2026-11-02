@@ -345,9 +345,9 @@ for r in st:
 stbl=f'<table class="tb t-st"><thead><tr><th>State</th><th>₹ moved per resident a month</th><th class="n">Value growth</th><th class="n">Payment growth</th><th class="n">Payments a month</th></tr></thead><tbody>{srows}</tbody></table>'
 add('10 · Geography','The south and west lead on UPI money moved per person; most metro cores run 2–3.5 times their state average',
  pts("<b>Kerala, Tamil Nadu and Jammu and Kashmir grew fastest;</b> West Bengal grew slowest in value (+11.7%) though its payment count rose 18.5%.",
-     "<b>Kolkata is 3.5× West Bengal's average;</b> its level is the lowest with Ahmedabad's. Hyderabad is 1.6×: its core district holds only 27% of the metro's UPI (HITEC City is in Ranga Reddy); metro-wide it is about ₹77,500.",
+     "<b>Kolkata is 3.5× West Bengal's average;</b> its level is the lowest with Ahmedabad's. Hyderabad is 1.6×: its core district has only 27% of the UPI of its four-district cluster (HITEC City is in Ranga Reddy).",
      "<b>Money moved, not income:</b> gross flows, including transfers between people. All UPI per person (₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh). About 39% of UPI value has no state.",
-     "<b>City populations are 2026 estimates</b> for the same districts: each 2011 Census count (today's boundary) grows at its 2001–11 pace relative to its state. World Population Review's metro figures are a cross-check in the data.")+
+     "<b>City populations are 2026 estimates</b> for the same districts: 2011 Census counts grown at their 2001–11 pace relative to the state (Chennai: corporation base at Tamil Nadu's pace; Delhi: MoHFW projection). WPR's metro figures are a cross-check.")+
  ex('Metro core: UPI money moved per resident per month','₹, Jul–Sep 2026; label = multiple of the state average','xCity')+
  exhtml('States: UPI money moved per resident, and growth','Jul–Sep 2026; growth vs Jul–Sep 2025',stbl),
  '<b>Source:</b> NPCI state and district UPI tables; MoHFW Technical Group population projections 2011–2036; Census 2001 and 2011; World Population Review (cross-check); analysis. 22 states with 5 million+ people; includes person-to-person transfers. District data start in March 2026, so city growth rates are not yet available.','g-pee" style="grid-template-columns:255px .85fr 1.35fr')
