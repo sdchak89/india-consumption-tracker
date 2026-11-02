@@ -2,7 +2,7 @@
 
 What 69 months of UPI payments data say about how India spends, cross-checked against cash, bank credit, national accounts, vehicle registrations and company results.
 
-**Soumyadeep Chakraborty** · November 2026 · data to September 2026
+**Mostly AI, with a little nudge from Soumyadeep** · November 2026 · data to September 2026
 
 | | |
 |---|---|
