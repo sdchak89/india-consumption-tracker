@@ -23,6 +23,7 @@ npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were ta
 | `macro/currency_annual_fy_end.csv` | RBI Handbook of Statistics on the Indian Economy, Table 36 (release of 31 Jul 2026) |
 | `macro/size_ratios_fy.csv` | FY totals and ratios: GDP and PFCE (MoSPI), UPI and P2M (NPCI), ATM and card payments (RBI PSI), currency with the public (RBI) |
 | `macro/state_population_projection.csv` | Report of the Technical Group on Population Projections 2011–2036, National Commission on Population, MoHFW (July 2020) |
+| `macro/census_district_growth.csv` | Census of India 2001 and 2011 populations for Bengaluru Urban and Karnataka, used for the city population sensitivity |
 
 ## Credit, cash, tax, vehicles, fuel
 
@@ -33,6 +34,7 @@ npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were ta
 | `rbi/cash_share_quarterly.csv` | Quarterly digital totals, PFCE and cash share range |
 | `rbi/cash_residual_article_tables.csv` | The published estimates in Bhuyan, RBI Bulletin, October 2024, used to validate the method |
 | `rbi/CASH_METHOD.md` | Cash-share method, definitions and validation |
+| `rbi/rupay_credit_card_on_upi.csv` | UPI payments on RuPay credit cards by financial year (Ministry of Finance reply to Rajya Sabha Q889, NPCI data; FY25 to October 2024) |
 | `tax/state_income_tax.csv` | Positive-tax income-tax filers per 1,000 people by state (Ministry of Finance reply to Lok Sabha Question 946, 10 Feb 2025; all assessee types), with state UPI shares |
 | `vahan/vahan_state_monthly.csv.gz` | Vehicle registrations by state, class and month (Vahan4 public dashboard) |
 | `ppac/petroleum_consumption_monthly.csv` | Product-wise petroleum consumption (PPAC) |
