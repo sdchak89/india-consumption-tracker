@@ -1,0 +1,44 @@
+# Data
+
+All files were retrieved on 1 November 2026. Values are as published at that date; publishers revise past figures, sometimes without notice. Large files are gzipped (pandas reads them directly).
+
+## NPCI (UPI)
+
+npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were taken from the archive at measure.thisindianlife.today, which mirrors NPCI's UPI ecosystem statistics. The merchant-category table was spot-checked against NPCI's own August 2025 table, and its P2M total equals NPCI's separate P2P/P2M table in every month.
+
+| File | What it is |
+|---|---|
+| `npci/merchant_categories_monthly.csv` | UPI merchant payments by category (MCC), Jan 2021–Sep 2026. Value in ₹ crore, payments in million. NPCI lists only its top categories each month; other months are marked "Not separately published". `total` = all merchant (P2M) payments; `others` = NPCI's residual line |
+| `npci/p2p_p2m_monthly.csv` | UPI person-to-person and person-to-merchant totals, from April 2020 (rupees, counts) |
+| `npci/state_monthly.csv.gz` | UPI by state of the payer, from April 2023 |
+| `npci/district_monthly.csv.gz` | UPI by district, from March 2026 |
+| `npci/district_snapshot.csv` | District concordance to the 2011 census, metro clusters and 2026 population estimates (state projection × 2011 district share) |
+
+## National accounts, payments, population
+
+| File | Source |
+|---|---|
+| `macro/gdp_pfce_annual.csv`, `macro/gdp_pfce_quarterly.csv` | MoSPI National Accounts API, base 2022-23, release of 31 Aug 2026 (GDP, PFCE; current and constant prices) |
+| `macro/atm_cash_withdrawals_monthly.csv`, `macro/card_spend_monthly.csv` | RBI Payment System Indicators |
+| `macro/currency_annual_fy_end.csv` | RBI Handbook of Statistics on the Indian Economy, Table 36 (release of 31 Jul 2026) |
+| `macro/size_ratios_fy.csv` | FY totals and ratios: GDP and PFCE (MoSPI), UPI and P2M (NPCI), ATM and card payments (RBI PSI), currency with the public (RBI) |
+| `macro/state_population_projection.csv` | Report of the Technical Group on Population Projections 2011–2036, National Commission on Population, MoHFW (July 2020) |
+
+## Credit, cash, tax, vehicles, fuel
+
+| File | Source |
+|---|---|
+| `rbi/credit_growth_prepost.csv` | Year-on-year growth of consumer credit by lender and loan type: RBI sectoral deployment of bank credit (30 Oct 2026 release) and RBI NBFC sectoral credit (6 Oct 2026 release) |
+| `rbi/cash_residual_components.csv` | Monthly digital consumer-payment components, Jun 2020–Sep 2026, ₹ crore (RBI PSI; NPCI P2M) |
+| `rbi/cash_share_quarterly.csv` | Quarterly digital totals, PFCE and cash share range |
+| `rbi/cash_residual_article_tables.csv` | The published estimates in Bhuyan, RBI Bulletin, October 2024, used to validate the method |
+| `rbi/CASH_METHOD.md` | Cash-share method, definitions and validation |
+| `tax/state_income_tax.csv` | Positive-tax income-tax filers per 1,000 people by state (Ministry of Finance reply to Lok Sabha Question 946, 10 Feb 2025; all assessee types), with state UPI shares |
+| `vahan/vahan_state_monthly.csv.gz` | Vehicle registrations by state, class and month (Vahan4 public dashboard) |
+| `ppac/petroleum_consumption_monthly.csv` | Product-wise petroleum consumption (PPAC) |
+
+Company results, news reports and other single figures cited in the report are listed with links on the last page of the PDF briefing.
+
+## Rights
+
+Each dataset belongs to its publisher and is redistributed here, with attribution, so the analysis can be reproduced. If you publish one of these datasets and would like it handled differently, please open an issue.
