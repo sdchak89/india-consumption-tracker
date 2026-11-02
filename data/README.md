@@ -23,12 +23,14 @@ npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were ta
 | `macro/currency_annual_fy_end.csv` | RBI Handbook of Statistics on the Indian Economy, Table 36 (release of 31 Jul 2026) |
 | `macro/size_ratios_fy.csv` | FY totals and ratios: GDP and PFCE (MoSPI), UPI and P2M (NPCI), ATM and card payments (RBI PSI), currency with the public (RBI) |
 | `macro/state_population_projection.csv` | Report of the Technical Group on Population Projections 2011–2036, National Commission on Population, MoHFW (July 2020) |
-| `macro/census_district_growth.csv` | Census of India 2001 and 2011 populations for Bengaluru Urban and Karnataka, used for the city population sensitivity |
+| `macro/census_district_growth.csv` | Census of India 2001 and 2011 populations (Table A-2) for Bengaluru Urban, Kolkata, Mumbai, Mumbai Suburban and their states, used for the city population sensitivity |
 
 ## Credit, cash, tax, vehicles, fuel
 
 | File | Source |
 |---|---|
+| `rbi/raw/SIBC30102026E.xlsx`, `rbi/raw/NBFCCREDIT06102026.xlsx` | The RBI workbooks as published: sectoral deployment of bank credit (30 Oct 2026 release) and NBFC sectoral credit (6 Oct 2026 release) |
+| `rbi/consumer_credit_levels.csv` | Outstanding personal and retail loans by loan type, banks and NBFCs, at each date in the two workbooks (₹ crore), with the RBI row label. Used for the credit growth and for where the year's increase went |
 | `rbi/credit_growth_prepost.csv` | Year-on-year growth of consumer credit by lender and loan type: RBI sectoral deployment of bank credit (30 Oct 2026 release) and RBI NBFC sectoral credit (6 Oct 2026 release) |
 | `rbi/cash_residual_components.csv` | Monthly digital consumer-payment components, Jun 2020–Sep 2026, ₹ crore (RBI PSI; NPCI P2M) |
 | `rbi/cash_share_quarterly.csv` | Quarterly digital totals, PFCE and cash share range |
@@ -39,7 +41,11 @@ npci.org.in refused scripted access on 1 November 2026, so NPCI's tables were ta
 | `vahan/vahan_state_monthly.csv.gz` | Vehicle registrations by state, class and month (Vahan4 public dashboard) |
 | `ppac/petroleum_consumption_monthly.csv` | Product-wise petroleum consumption (PPAC) |
 
-Company results, news reports and other single figures cited in the report are listed with links on the last page of the PDF briefing.
+## Company results, surveys, markets and prices
+
+| File | What it is |
+|---|---|
+| `external/external_figures.csv` | Every figure the report takes from company results, RBI surveys, CPI and policy releases, industry bodies, market indices and gold-price reports: the period and value as published, the publisher and the source link. Measures differ (revenue, order value, same-store growth, volume), so rows are not comparable with each other |
 
 ## Rights
 
