@@ -20,6 +20,7 @@
 | Break-adjusted growth (sensitivity) | last 12 months ÷ (pre-break months × (Sep 2025 ÷ Aug 2025) + post-break months of the earlier year) − 1 |
 | Per resident | classified UPI value ÷ population ÷ months |
 | State share change | 100 × ln(share this FY ÷ share last FY), share of classified UPI value |
+| Where the credit increase went | increase in outstanding (banks Sep→Sep, NBFCs Aug→Aug) by loan type ÷ total non-housing increase |
 
 PFCE is MoSPI's private final consumption expenditure in current prices, 2022-23 base (release of 31 August 2026).
 
@@ -34,7 +35,7 @@ FY26:      1.265 = 1.085 × 1.166
 
 Adding the parts doesn't work: 8.5% + 16.6% = 25.1%, not 26.5%. The missing 1.4 points is the overlap (share gains applied on a larger consumption base), and it belongs to neither cause. Dividing doesn't work either: 8.5 ÷ 26.5 = 32% ignores the compounding.
 
-Logs turn the product into a sum, so the parts add up to exactly 100% and the split doesn't depend on which cause is counted first:
+We use an exact, order-independent log-accounting split. Logs turn the product into a sum, so the parts add up to exactly 100% and the split doesn't depend on which cause is counted first:
 
 ```
 ln(1.265) = ln(1.085) + ln(1.166)
@@ -50,7 +51,7 @@ The faster UPI grows, the more a simple ratio understates consumption's part:
 | FY25 | 42.1% | 10.1% | 24% | 27% | 2.9 points |
 | FY26 | 26.5% | 8.5% | 32% | 35% | 1.4 points |
 
-This is an accounting split, not a causal estimate. Consumption is nominal, so its part includes price rises, and merchant UPI also carries investment and repayment flows (about ₹15 lakh crore a year), so the share-gain part is not all cash switching.
+Other exact ways of allocating the 1.4-point overlap exist; this is an accounting split, not a causal estimate. Consumption is nominal, so its part includes price rises, and merchant UPI also carries investment and repayment flows (about ₹15 lakh crore a year), so the share-gain part is not all cash switching.
 
 ## Cash share
 
@@ -76,7 +77,7 @@ Every figure is computed at full precision and rounded once, for display. The sc
 - **Prices.** UPI figures are nominal. In a Jan–Aug 2026 test using approximate category CPI proxies, none of the 26 tested series changed sign.
 - **Debt collection.** In September 2025 the value of MCC 7322 fell 37% in a month while payments fell 12%, and the average payment dropped from ₹5,083 to ₹3,630. NPCI announced no reclassification; the report treats it as a likely break and shows both reported and break-adjusted growth. Confirming it needs an NPCI mapping notice.
 - **Revisit after the festive season.** This edition runs to September 2026. Diwali fell on 20 October in 2025 but falls on 8 November in 2026, and Navratri and the big online sales moved from late September to October, so October on its own will mislead. We will revisit clothing, electronics, online marketplaces and department stores once October–November 2026 data are out (expected December 2026), comparing September–November with the same months a year earlier.
-- **Geography.** UPI is attributed by payer address; about 39% of value has no state. Per-resident figures are money moved, not income or spending: they count every transfer, including person-to-person payments and transfers between a person's own accounts, so all UPI per person (about ₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh in FY26). District populations use 2011 Census shares of the state projection, which understates fast-growing districts: Bengaluru Urban grew 47% in 2001–11 against 16% for Karnataka, and on that trend its 2026 population is about 15.6 million and its figure about ₹61,500 a month rather than ₹88,300. Districts whose share fell (Kolkata, Mumbai) are understated instead.
+- **Geography.** UPI is attributed by payer address; about 39% of value has no state. Per-resident figures are money moved, not income or spending: they count every transfer, including person-to-person payments and transfers between a person's own accounts, so all UPI per person (about ₹2.5 lakh a year) is close to GDP per person (₹2.4 lakh in FY26). District populations use fixed 2011 Census shares of the state projection. Bengaluru Urban grew 47% in 2001–11 against 16% for Karnataka, while Kolkata's share of West Bengal fell from 5.7% to 4.9% and Mumbai's (with Mumbai Suburban) of Maharashtra from 12.4% to 11.1%. If 2001–11 relative-population trends continued, fixed 2011 shares would overstate Bengaluru's UPI per resident and understate Kolkata's and Mumbai's; the actual 2026 bias is unverified. On that trend Bengaluru's 2026 population would be about 15.6 million and its figure about ₹61,500 a month rather than ₹88,300.
 
 ## Checks
 
