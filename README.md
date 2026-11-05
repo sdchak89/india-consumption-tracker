@@ -9,6 +9,7 @@ What 69 months of UPI payments data say about how India spends, cross-checked ag
 | **PDF briefing** (20 pages) | [docs/Where-is-Indian-consumption-going-Nov-2026.pdf](docs/Where-is-Indian-consumption-going-Nov-2026.pdf) |
 | **Interactive report** (every chart has its data table) | [sdchak89.github.io/india-consumption-tracker](https://sdchak89.github.io/india-consumption-tracker/) |
 | **Every published number, with its formula and source** | [report/data/numbers.csv](report/data/numbers.csv) |
+| **Government data scorecard**: how good is the official data behind it? | [evaluation/](evaluation/README.md) |
 
 ## The short answer
 
@@ -28,6 +29,7 @@ pip install -r requirements.txt
 python pipeline/run.py            # data/ -> build/report.json (every number the report plots)
 python -m pytest tests            # rebuild and compare with report/data/report.json
 python report/web/build_web.py    # -> docs/index.html, the interactive report
+python evaluation/evaluate.py     # -> build/scorecard.*, the government data scorecard
 ```
 
 The PDF needs Node and Playwright's Chromium:
@@ -59,8 +61,10 @@ report/
   data/               the published dataset (report.json, ticket_monthly.json, numbers.csv)
   web/                interactive report: template, charts, category cards
   deck/               PDF briefing: page builder, charts, renderer
+evaluation/           government data scorecard: 16 datasets x 7 dimensions, each score with evidence,
+                      ranked with a 90% range (sources.csv, rubric.csv, scores.csv -> scorecard.*)
 docs/                 GitHub Pages: the interactive report and the PDF
-tests/                rebuild check and headline numbers
+tests/                rebuild checks (report and scorecard), headline numbers, scorecard evidence
 ```
 
 ## Method and limits

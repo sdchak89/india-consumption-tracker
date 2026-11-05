@@ -1,0 +1,95 @@
+source,dimension,score,basis,evidence
+npci_mcc,frequency,3,documented,Monthly table.
+npci_mcc,detail,2,documented,"National only. About 60 categories over time, but each month lists only its top 29, plus a total and 'Others' (31 rows every month)."
+npci_mcc,consistency,1,documented,"Unexplained break in debt collection (MCC 7322), Sep 2025: value -37% in a month, no NPCI notice (METHOD.md). Categories move on and off the top list. Past rows edited without notice (data/rbi/CASH_METHOD.md). Its total does match NPCI's P2P/P2M table in all 69 months."
+npci_mcc,access,1,documented,npci.org.in refused scripted access on 1 Nov 2026; the tables came from a third-party archive (data/README.md).
+npci_mcc,documentation,1,judged,"No published rule for which categories are listed, no definition of 'Others', no notice of the MCC 7322 change."
+npci_p2p_p2m,frequency,3,documented,Monthly table.
+npci_p2p_p2m,detail,1,documented,National; person-to-person and person-to-merchant only.
+npci_p2p_p2m,consistency,2,judged,"Monthly from Apr 2020. The total matches RBI's Payment System Indicators within 1% in all 76 shared months, and the merchant total matches the MCC table in all 69 (checked in tests). Past rows edited without notice (data/rbi/CASH_METHOD.md)."
+npci_p2p_p2m,access,1,documented,npci.org.in refused scripted access on 1 Nov 2026; the table came from a third-party archive (data/README.md).
+npci_p2p_p2m,documentation,1,judged,Definitions only; revisions to past months are not logged.
+npci_geo,frequency,3,documented,Monthly table.
+npci_geo,detail,3,documented,State from Apr 2023; 776 districts from Mar 2026; no merchant categories by place (METHOD.md).
+npci_geo,consistency,1,documented,"State table only from Apr 2023, district from Mar 2026. The share of value with no state rose from 14% (Apr 2023) to 42% (Jun 2025) with no explanation."
+npci_geo,access,1,documented,npci.org.in refused scripted access on 1 Nov 2026; the tables came from a third-party archive (data/README.md).
+npci_geo,documentation,1,judged,No explanation of the unclassified share or of how a payer's state is assigned.
+mospi_nas,frequency,2,documented,Quarterly estimates; annual estimates revised on a published cycle.
+mospi_nas,detail,2,judged,"National. PFCE by purpose is annual; quarterly PFCE is a single total, as used here."
+mospi_nas,completeness,4,documented,Covers the whole economy by construction.
+mospi_nas,consistency,2,judged,"The new 2022-23 base series used here starts in 2022-23 (4 years; 'one vintage, no splicing' in the file). The base change was announced. If MoSPI publishes a back series, this rises."
+mospi_nas,access,4,documented,"Public API (api.mospi.gov.in), used directly by this repo."
+mospi_nas,documentation,4,judged,"Advance release calendar and methodology; every year labelled Final, First Revised or Provisional (data/macro/gdp_pfce_annual.csv)."
+mospi_cpi,frequency,3,documented,"Monthly, on the 12th."
+mospi_cpi,detail,3,judged,"All-India and state indices, rural and urban, by item group."
+mospi_cpi,completeness,4,judged,"Covers all states, rural and urban."
+mospi_cpi,consistency,4,judged,Long monthly series; base changes published with linking factors.
+mospi_cpi,access,3,judged,This repo used the press-release PDF; MoSPI also offers the series for download.
+mospi_cpi,documentation,4,judged,Fixed release date and published methodology.
+rbi_psi,frequency,3,documented,Monthly.
+rbi_psi,detail,2,documented,"National, by payment instrument; card payments split by point of sale and other from Nov 2019."
+rbi_psi,consistency,3,documented,"Reproduces the FY23 and FY24 digital totals in Bhuyan (RBI Bulletin, Oct 2024) exactly; UPI total matches NPCI within 1% in all 76 months; ATM coverage widened in Dec 2021, with a note (data/rbi/CASH_METHOD.md)."
+rbi_psi,access,2,judged,"One web page per monthly release; this repo assembled the history release by release, taking the latest vintage of each month."
+rbi_psi,documentation,3,judged,"Definitions in the release notes; figures marked provisional and revised in later releases, without a revision log."
+rbi_sibc,frequency,3,documented,Monthly release.
+rbi_sibc,detail,2,documented,"National, by sector and loan type."
+rbi_sibc,completeness,3,documented,"Select banks 'accounting for about 95 per cent of total non-food credit' (workbook note, Statement 1)."
+rbi_sibc,consistency,3,documented,"Reporting date redefined from 31 Dec 2025 under the Banking Laws (Amendment) Act 2025, explained in the workbook (Statement 2)."
+rbi_sibc,access,3,documented,Excel workbook for each release.
+rbi_sibc,documentation,3,judged,Notes explain coverage and reference dates; figures marked provisional.
+rbi_nbfc,frequency,3,judged,Taken as monthly; this repo holds one release (6 Oct 2026).
+rbi_nbfc,detail,2,documented,"National, by sector and loan type."
+rbi_nbfc,completeness,3,documented,Sample of Upper- and Middle-Layer NBFCs and HFCs 'accounting for about 87 per cent of total credit' (workbook note).
+rbi_nbfc,consistency,2,judged,Short public series; the sample is benchmarked to a moving reference (RBI's Report on Trend and Progress 2024-25).
+rbi_nbfc,access,3,documented,Excel workbook for each release.
+rbi_nbfc,documentation,3,judged,Notes state the sample and that data are provisional.
+rbi_currency,frequency,1,documented,Annual table. The same series is published every two weeks in RBI's Weekly Statistical Supplement.
+rbi_currency,detail,1,documented,"National: in circulation, with banks, with the public."
+rbi_currency,completeness,4,documented,Complete by construction (RBI's own balance sheet).
+rbi_currency,consistency,4,judged,Decades-long comparable series.
+rbi_currency,access,3,documented,Excel and PDF tables.
+rbi_currency,documentation,3,judged,Definitions in the Handbook notes.
+rbi_surveys,timeliness,3,judged,Sep 2026 round published with the October policy; exact release date not recorded here.
+rbi_surveys,frequency,2,documented,Every two months.
+rbi_surveys,detail,1,judged,"National (urban) results with sub-questions on income, spending and prices; no results by city."
+rbi_surveys,completeness,2,judged,19 cities; urban households only.
+rbi_surveys,consistency,3,judged,Long-running rounds; city coverage has changed over time.
+rbi_surveys,access,3,judged,Publication with tables.
+rbi_surveys,documentation,3,judged,Each release states the sample and method.
+vahan,frequency,4,documented,Dashboard updated daily.
+vahan,detail,4,documented,"State, RTO, vehicle class, fuel and maker."
+vahan,consistency,3,judged,States joined Vahan at different times and registrations can be back-filled; no revision record.
+vahan,access,2,documented,"Interactive dashboard only: this repo needed one query per state, year and view (source column of data/vahan/vahan_state_monthly.csv.gz)."
+vahan,documentation,2,judged,Little methodology published with the dashboard.
+ppac,frequency,3,documented,Monthly.
+ppac,detail,2,documented,"National, by product (12 products)."
+ppac,completeness,4,documented,Includes private-sector sales (file notes).
+ppac,consistency,3,judged,Past-year files re-issued long after the year (FY2020-21 file last modified Apr 2023; FY2024-25 in Mar 2026) with no note of what changed.
+ppac,access,3,documented,Excel workbook for each financial year.
+ppac,documentation,2,judged,Short notes; re-issued files carry no change log.
+mohfw_projection,frequency,0,documented,"One report (July 2020), not updated since."
+mohfw_projection,detail,3,documented,"State, by age and sex, 2011-2036."
+mohfw_projection,completeness,4,documented,All states and union territories.
+mohfw_projection,consistency,2,judged,"One projection run, internally consistent, but it cannot yet be checked against a newer census."
+mohfw_projection,access,1,documented,PDF report.
+mohfw_projection,documentation,4,judged,The report sets out its full method.
+census_2011,timeliness,0,documented,"The data describe 1 March 2011, more than 15 years before retrieval; no census has been published since."
+census_2011,frequency,0,documented,"Decennial, and the 2021 round was postponed."
+census_2011,detail,4,documented,"District, town and village."
+census_2011,completeness,4,documented,Full enumeration.
+census_2011,consistency,3,judged,"Table A-2 gives 2001-2011 change on consistent boundaries; later district changes need manual fixes (Chennai 2018, Ahmedabad 2013; data/macro/census_district_growth.csv)."
+census_2011,access,3,documented,Excel tables in the NADA catalogue.
+census_2011,documentation,4,judged,Extensive published methodology.
+ls_cbdt,frequency,0,documented,Ad hoc: available only because a member of parliament asked.
+ls_cbdt,detail,2,documented,"State level, one measure."
+ls_cbdt,completeness,3,judged,Covers the states in the reply; this repo uses 21 of them.
+ls_cbdt,consistency,0,documented,One table; no time series.
+ls_cbdt,access,1,documented,PDF annexure to a Lok Sabha reply.
+ls_cbdt,documentation,1,judged,"Definition limited to 'positive-tax filers, all assessee types'."
+rs_rupay,timeliness,2,judged,Data to Oct 2024 in a parliamentary reply; reply date not recorded here.
+rs_rupay,frequency,0,documented,Ad hoc: available only because a member of parliament asked.
+rs_rupay,detail,0,documented,One national total per financial year.
+rs_rupay,completeness,2,judged,FY2024-25 covers only April to October 2024.
+rs_rupay,consistency,0,documented,One table; no time series.
+rs_rupay,access,1,documented,PDF annexure to a Rajya Sabha reply.
+rs_rupay,documentation,1,judged,Counts and values only; no definitions.

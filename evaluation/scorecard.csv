@@ -1,0 +1,17 @@
+rank,id,dataset,publisher,score,score_lo,score_hi,rank_lo,rank_hi,p_top_third,p_bottom_third,tier,timeliness,frequency,detail,completeness,consistency,access,documentation,judged_scores,report_numbers,upgrade
+1,mospi_cpi,MoSPI consumer prices,MoSPI (NSO),85.7,73.2,92.3,1,4,0.984,0.0,Clear leader,3,3,3,4,4,3,4,5,1,Publish item-level indices as a machine-readable series with each release
+2,vahan,Vahan vehicle registrations,MoRTH,82.1,69.6,92.6,1,7,0.92,0.0,Clear leader,4,4,4,4,3,2,2,2,1,"Add a bulk download or API, and a methodology note"
+3,ppac,PPAC fuel consumption,PPAC (MoPNG),75.0,64.0,85.1,2,8,0.792,0.0,Strong,4,3,2,4,3,3,2,2,0,Date-stamp re-issued files and say what changed
+4,mospi_nas,MoSPI national accounts,MoSPI (NSO),71.4,57.8,82.7,2,9,0.5,0.005,Middle,2,2,2,4,2,4,4,3,12,Publish the back series on the 2022-23 base through the API
+4,rbi_psi,RBI payment system indicators,RBI,71.4,61.5,80.7,3,9,0.623,0.0,Strong,3,3,2,4,3,2,3,2,8,"Offer the full history as one download, with each release's vintage"
+4,rbi_sibc,RBI bank credit by sector,RBI,71.4,65.0,77.6,3,8,0.608,0.0,Strong,3,3,2,3,3,3,3,1,3,Publish loan types by state
+7,census_2011,Census of India 2011,Office of the Registrar General (MHA),64.3,43.8,80.9,2,13,0.266,0.123,Middle,0,0,4,4,3,3,4,2,2,"Publish the next census, with district tables on today's boundaries"
+7,rbi_nbfc,RBI NBFC credit by sector,RBI,64.3,54.3,74.5,4,11,0.118,0.017,Middle,2,3,2,3,2,3,3,3,2,Widen the sample beyond about 87% of credit and release with the bank data
+9,rbi_surveys,RBI household surveys,RBI,60.7,46.6,74.9,4,13,0.108,0.143,Middle,3,2,1,2,3,3,3,6,3,Cover rural households and publish results by city
+9,rbi_currency,RBI currency (Handbook),RBI,60.7,45.5,74.6,5,13,0.066,0.159,Middle,1,1,1,4,4,3,3,2,7,Nothing needed from RBI: this tracker should take the fortnightly series from RBI's Weekly Statistical Supplement
+11,npci_p2p_p2m,NPCI P2P/P2M totals,NPCI,53.6,39.5,67.2,7,14,0.003,0.371,Middle,3,3,1,4,2,1,1,2,5,Allow scripted downloads and log every revision to a past month
+12,mohfw_projection,MoHFW population projections,National Commission on Population (MoHFW),50.0,31.9,66.9,8,14,0.011,0.588,Weak,0,0,3,4,2,1,4,2,4,Re-base on the next census and publish the tables as CSV
+13,npci_geo,NPCI UPI by state and district,NPCI,46.4,34.6,58.0,9,14,0.001,0.714,Weak,3,3,3,1,1,1,1,1,5,Explain and shrink 'Unclassified (no state reported)'; publish merchant categories by state
+14,npci_mcc,NPCI merchant categories,NPCI,42.9,32.4,53.5,10,15,0.0,0.881,Weak,3,3,2,1,1,1,1,1,55,"List every category every month, not only the top 29, and break out 'Others'"
+15,ls_cbdt,CBDT taxpayers by state,CBDT (via a Lok Sabha reply),28.6,17.0,41.9,13,16,0.0,1.0,Clear laggard,1,0,2,3,0,1,1,2,1,Publish state-wise taxpayer counts every year in CBDT's own statistics
+16,rs_rupay,RuPay credit cards on UPI,Ministry of Finance (via a Rajya Sabha reply; NPCI data),21.4,10.4,34.9,15,16,0.0,1.0,Clear laggard,2,0,0,2,0,1,1,3,1,"NPCI to publish UPI by funding source (bank account, credit card, credit line) every month"
